@@ -7,12 +7,14 @@
 Game::Game() {
     std::cout<<"Constructor Game\n";
 }
+Game::Game(const Game &other) : board(other.board)
+{
+    std::cout<<"Constructor Game de copiere\n";
+}
 
 void Game::start_game() {
     sf::RenderWindow window(sf::VideoMode(800, 800), "Chess ");
     window.setVerticalSyncEnabled(true);
-
-    Board board;
 
     std::vector <sf::Sprite> white_squares;
     std::vector <sf::Sprite> black_squares;
@@ -62,12 +64,10 @@ void Game::start_game() {
         sf::Event event;
         while (window.pollEvent(event))
         {
-            // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
             {
                 window.close();
             }
-
 
             window.clear(sf::Color::Black);
 

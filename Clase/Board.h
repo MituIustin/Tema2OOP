@@ -9,7 +9,7 @@ private:
     int number_of_pieces;
 public:
     Board();
-    void Draw();
+
 };
 
 
