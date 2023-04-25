@@ -13,6 +13,10 @@ Game::Game(const Game &other) : board(other.board)
 }
 
 void Game::start_game() {
+
+    first_player.create_pieces();
+    second_player.create_pieces();
+
     sf::RenderWindow window(sf::VideoMode(800, 800), "Chess ");
     window.setVerticalSyncEnabled(true);
 

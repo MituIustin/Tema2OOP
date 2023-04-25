@@ -7,6 +7,7 @@ class Bishop : public Piece{
 private:
 public:
     Bishop();
+    void move() override;
     ~Bishop();
 };
 
