@@ -9,13 +9,20 @@ private:
 public:
     Piece();
     virtual void move() = 0;
+    sf::Texture get_texture();
+    sf::Sprite get_sprite();
+    void set_texture(sf::Texture);
+    void set_sprite(sf::Sprite);
     virtual ~Piece();
+    bool alive;
+    void set_row_col(int, int);
 
 protected:
-    bool alive;
+
     int row,col;
     sf::Texture texture;
     sf::Sprite sprite;
+
 };
 
 

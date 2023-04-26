@@ -9,7 +9,8 @@ private:
     void move() override;
 public:
     King();
-    sf::Sprite get_sprite();
+    King(int);
+    King(const King&) ;
     ~King();
 };
 

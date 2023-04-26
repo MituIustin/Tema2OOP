@@ -8,6 +8,7 @@ private:
     void move() override;
 public:
     Rook();
+    Rook(int);
     ~Rook();
 };
 

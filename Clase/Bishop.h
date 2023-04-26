@@ -8,6 +8,7 @@ private:
     void move() override;
 public:
     Bishop();
+    Bishop(int);
     ~Bishop();
 };
 
