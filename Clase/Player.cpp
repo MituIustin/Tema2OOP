@@ -38,7 +38,7 @@ void Player::create_knights() {
 }
 
 void Player::create_king() {
-    std::unique_ptr<King> king1;
+    std::unique_ptr<King> king1 = std::make_unique<King>();
     king = std::move(king1);
 }
 

@@ -3,6 +3,7 @@
 
 Rook::Rook() {
     std::cout<<"Constructor Rook\n";
+    alive = true;
 }
 
 void Rook::move() {

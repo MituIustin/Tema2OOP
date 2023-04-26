@@ -4,6 +4,7 @@
 
 Bishop::Bishop() {
     std::cout<<"Constructor Bishop\n";
+    alive = true;
 }
 
 void Bishop::move() {

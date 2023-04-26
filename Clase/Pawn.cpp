@@ -4,6 +4,7 @@
 
 Pawn::Pawn() {
     std::cout<<"Constructor Pawn\n";
+    alive = true;
 }
 
 void Pawn::move() {

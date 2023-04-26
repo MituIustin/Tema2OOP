@@ -3,6 +3,7 @@
 
 Knight::Knight() {
     std::cout<<"Constructor Knight\n";
+    alive = true;
 }
 
 void Knight::move() {
