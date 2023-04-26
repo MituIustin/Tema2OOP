@@ -5,8 +5,10 @@
 
 class Rook : public Piece{
 private:
+    void move() override;
 public:
     Rook();
+    ~Rook();
 };
 
 

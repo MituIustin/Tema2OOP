@@ -20,7 +20,7 @@ private:
     std::vector <std::unique_ptr<Rook>> rooks;
     std::vector <std::unique_ptr<Pawn>> pawns;
     std::vector <std::unique_ptr<Queen>> queens;       //promovare pion, dynamic cast?
-    const std::unique_ptr<King> king;
+    std::unique_ptr<King> king;
 
     void create_king();
     void create_queen();

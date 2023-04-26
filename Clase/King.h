@@ -5,8 +5,10 @@
 
 class King : public Piece{
 private:
+    void move() override;
 public:
     King();
+    ~King();
 };
 
 #endif //OOP_KING_H

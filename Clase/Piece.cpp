@@ -2,6 +2,7 @@
 #include <iostream>
 Piece::Piece() {
     std::cout<<"\nConstructor Piece\n";
+    alive = true;
 }
 
 void Piece::move() {

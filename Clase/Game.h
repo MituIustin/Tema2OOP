@@ -16,7 +16,6 @@ private:
 public:
     Game();
     Game(const Game &other) ;
-    void create_pieces();
     void start_game();
 };
 

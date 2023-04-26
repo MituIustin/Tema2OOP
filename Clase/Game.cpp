@@ -24,7 +24,7 @@ void Game::start_game() {
     std::vector <sf::Sprite> black_squares;
 
     bool var = true;
-    bool par = true;
+    bool par = true;                    //DE ELIMINAT
     for(int i=0; i<800; i+=100)
     {
         if(var == true) par = true;

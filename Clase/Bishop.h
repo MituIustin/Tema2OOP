@@ -5,9 +5,9 @@
 
 class Bishop : public Piece{
 private:
+    void move() override;
 public:
     Bishop();
-    void move() override;
     ~Bishop();
 };
 
