@@ -5,8 +5,10 @@
 
 class Pawn : public Piece {
 private:
+    void move() override;
 public:
     Pawn();
+    ~Pawn();
 };
 
 
