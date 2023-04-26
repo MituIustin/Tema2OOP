@@ -23,45 +23,67 @@ void Game::start_game() {
     std::vector <sf::Sprite> white_squares;
     std::vector <sf::Sprite> black_squares;
 
-    bool var = true;
-    bool par = true;                    //DE ELIMINAT
+    sf::Texture texture;
+    sf::Sprite sprite;
+    texture.loadFromFile("Texturi/blackking.png",sf::IntRect(0,0,100,100));
+    texture.setSmooth(true);
+    sprite.setTexture(texture);
+    sprite.setPosition(200,100);
+
+
     for(int i=0; i<800; i+=100)
     {
-        if(var == true) par = true;
-        else par = false;
-
         for(int j=0; j<800; j+=100)
         {
-            if(par)
-            {
-                par = false;
-                sf::Texture whitewood_texture;
-                if(!whitewood_texture.loadFromFile("Texturi/wsquare.PNG", sf::IntRect(0,0,100,100)))
-                {
-                    std::cout<<"eroare";
-                }
-                sf::Sprite whitewood_sprite;
-                whitewood_sprite.setTexture(whitewood_texture);
-                whitewood_sprite.setPosition(j,i);
-                white_squares.push_back(whitewood_sprite);
-            }
-            else
-            {
-                par = true;
-                sf::Texture darkwood_texture;
-                if(!darkwood_texture.loadFromFile("Texturi/bsquare.PNG",sf::IntRect(0,0,100,100) ))
-                {
-                    std::cout<<"eroare";
-                }
-                sf::Sprite darkwood_sprite;
-                darkwood_sprite.setTexture(darkwood_texture);
-                darkwood_sprite.setPosition(j,i);
-            }
+           if(i/100%2==0) {
+               if(j/100%2==0) {
+                   sf::Texture whitewood_texture;
+                   if (!whitewood_texture.loadFromFile("Texturi/wsquare.PNG", sf::IntRect(0, 0, 100, 100))) {
+                       std::cout << "eroare";
+                   }
+                   sf::Sprite whitewood_sprite;
+                   whitewood_sprite.setTexture(whitewood_texture);
+                   whitewood_sprite.setPosition(j, i);
+                   white_squares.push_back(whitewood_sprite);
+               }
+                else {
+                   sf::Texture darkwood_texture;
+                   if (!darkwood_texture.loadFromFile("Texturi/bsquare.png", sf::IntRect(0, 0, 100, 100))) {
+                       std::cout << "eroare";
+                   }
+                   sf::Sprite darkwood_sprite;
+                   darkwood_sprite.setTexture(darkwood_texture);
+                   darkwood_sprite.setPosition(j, i);
+               }
+           }
+           else
+           {
+               if(j/100%2==1) {
+                   sf::Texture whitewood_texture;
+                   if (!whitewood_texture.loadFromFile("Texturi/wsquare.PNG", sf::IntRect(0, 0, 100, 100))) {
+                       std::cout << "eroare";
+                   }
+                   sf::Sprite whitewood_sprite;
+                   whitewood_sprite.setTexture(whitewood_texture);
+                   whitewood_sprite.setPosition(j, i);
+                   white_squares.push_back(whitewood_sprite);
+               }
+               else {
+                   sf::Texture darkwood_texture;
+                   if (!darkwood_texture.loadFromFile("Texturi/bsquare.png", sf::IntRect(0, 0, 100, 100))) {
+                       std::cout << "eroare";
+                   }
+                   sf::Sprite darkwood_sprite;
+                   darkwood_sprite.setTexture(darkwood_texture);
+                   darkwood_sprite.setPosition(j, i);
+               }
+           }
         }
 
-        if(var == true) var = false;
-        else var = true;
+
     }
+
+
 
     while (window.isOpen())
     {
@@ -77,6 +99,8 @@ void Game::start_game() {
 
             for (auto square : white_squares) window.draw(square);
             for (auto square : black_squares) window.draw(square);
+            //board.draw_pieces();
+            window.draw(sprite);
 
             window.display();
         }
