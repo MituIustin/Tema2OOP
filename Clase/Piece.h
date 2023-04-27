@@ -5,19 +5,23 @@
 
 class Piece {
 private:
+    int row,col;
 public:
     Piece();
-    virtual bool move(int,int,int,int) =0;
-    sf::Sprite get_sprite();
-    void set_sprite(sf::Sprite);
     virtual ~Piece();
-    bool alive;
+    virtual bool move(int,int,int,int) =0;
     void set_row_col(int, int);
-    int row,col;
+    int get_row();
+    int get_col();
+    bool get_alive();
+    void set_alive(bool);
+    void set_sprite(sf::Sprite);
+    sf::Sprite get_sprite();
+
 protected:
+    bool alive;
     sf::Texture texture;
     sf::Sprite sprite;
-
 };
 
 

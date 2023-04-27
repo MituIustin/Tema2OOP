@@ -4,6 +4,7 @@
 Bishop::Bishop() {
     std::cout<<"Constructor Bishop\n";
     alive = true;
+    name = "bishop";
 }
 
 Bishop::Bishop(int x) {
@@ -21,6 +22,18 @@ Bishop::Bishop(int x) {
         sprite.setScale(float(100.0/178), float(100.0/272));
 
     }
+    name = "bishop";
+}
+
+Bishop::Bishop(const Bishop & other) {
+    std::cout<<"CC Bishop\n";
+    name = other.name;
+}
+
+Bishop &Bishop::operator=(const Bishop & other) {
+    std::cout<<"OP= Bishop";
+    name = other.name;
+    return *this;
 }
 
 bool Bishop::move(int x1, int y1, int x2, int y2) {

@@ -16,12 +16,3 @@ int main() {
     return 0;
 }
 
-
-/*
- * the structure of the project
- *
- * classes: board, piece, player, game +mostenire ( pawn, knight, horse, bishop, king, queen)
- *
- * in clasa "piece" functie virtuala : move (pt fiecare piesa in parte)
- * in clasa game atribut static : turn
- */

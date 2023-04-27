@@ -4,6 +4,7 @@
 Knight::Knight() {
     std::cout<<"Constructor Knight\n";
     alive = true;
+    name = "knight";
 }
 
 Knight::Knight(int x) {
@@ -21,6 +22,20 @@ Knight::Knight(int x) {
         sprite.setScale(float(100.0/195), float(100.0/279));
 
     }
+    name = "knight";
+}
+
+Knight::Knight(const Knight & other) {
+    std::cout<<"CC Knight\n";
+    alive = other.alive;
+    name = other.name;
+}
+
+Knight &Knight::operator=(const Knight & other) {
+    std::cout<<"OP= Knight\n";
+    alive = other.alive;
+    name = other.name;
+    return *this;
 }
 
 bool Knight::move(int x1, int y1, int x2, int y2) {

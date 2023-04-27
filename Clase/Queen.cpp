@@ -1,14 +1,15 @@
 #include "Queen.h"
-
 #include <iostream>
 
 Queen::Queen() {
     std::cout<<"Constructor Queen\n";
     alive = true;
+    name = "queen";
 }
 
 Queen::Queen(int x) {
     alive = true;
+    name = "queen";
     if(x==0)
     {
         texture.loadFromFile("Texturi/whitequeen.png", sf::IntRect(0,0,183,286));
@@ -29,6 +30,19 @@ bool Queen::move(int x1, int y1, int x2, int y2) {
     bool var = true;
     if(x1 != x2 && y1 != y2) var = false;
     return  var;
+}
+
+Queen::Queen(const Queen & other) {
+    std::cout<<"CC Queen\n";
+    alive = other.alive;
+    name = other.name;
+}
+
+Queen &Queen::operator=(const Queen & other) {
+    std::cout<<"OP= Queen\n";
+    alive = other.alive;
+    name = other.name;
+    return *this;
 }
 
 Queen::~Queen() {

@@ -2,13 +2,16 @@
 #define OOP_QUEEN_H
 
 #include "Piece.h"
+#include <string>
 
 class Queen : public  Piece{
 private:
-
+    std::string name;
 public:
     Queen();
     explicit Queen(int);
+    Queen(const Queen&);
+    Queen & operator=(const Queen&);
     bool move(int,int,int,int) override;
     ~Queen();
 };

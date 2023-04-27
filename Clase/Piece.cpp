@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 Piece::Piece() {
-    std::cout<<"\nConstructor Piece\n";
+    std::cout<<"Constructor Piece\n";
     alive = true;
     row = 9;
     col = 9;
@@ -16,6 +16,22 @@ bool Piece::move(int x1,int x2,int x3,int x4) {
 
 void Piece::set_sprite(sf::Sprite s) {
     sprite = s;
+}
+
+bool Piece::get_alive() {
+    return alive;
+}
+
+int Piece::get_col() {
+    return col;
+}
+
+int Piece::get_row() {
+    return row;
+}
+
+void Piece::set_alive(bool a) {
+    alive = a;
 }
 
 sf::Sprite Piece::get_sprite() {

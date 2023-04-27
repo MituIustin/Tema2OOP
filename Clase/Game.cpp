@@ -1,15 +1,55 @@
 #include "Game.h"
-#include "Board.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <vector>
 
 Game::Game() {
     std::cout<<"Constructor Game\n";
 }
-Game::Game(const Game &other) : board(other.board)
+Game::Game(const Game &other)
 {
     std::cout<<"Constructor Game de copiere\n";
+    white_squares = other.white_squares;
+    board = other.board;
+    first_player = other.first_player;
+    second_player = other.second_player;
+
+    white_rook_1 = other.white_rook_1;
+    white_rook_2 = other.white_rook_2;
+    black_rook_1 = other.black_rook_1;
+    black_rook_2 = other.black_rook_2;
+
+    white_knight_1 = other.white_knight_1;
+    white_knight_2 = other.white_knight_2;
+    black_knight_1 = other.black_knight_1;
+    black_knight_2 = other.black_knight_2;
+
+    white_bishop_1 = other.white_bishop_1;
+    white_bishop_2 = other.white_bishop_2;
+    black_bishop_1 = other.black_bishop_1;
+    black_bishop_2 = other.black_bishop_2;
+
+    white_queen = other.white_queen;
+    black_queen = other.black_queen;
+
+    white_king = other.white_king;
+    black_king = other.black_king;
+
+    white_pawn_1 = other.white_pawn_1;
+    white_pawn_2 = other.white_pawn_2;
+    white_pawn_3 = other.white_pawn_3;
+    white_pawn_4 = other.white_pawn_4;
+    white_pawn_5 = other.white_pawn_5;
+    white_pawn_6 = other.white_pawn_6;
+    white_pawn_7 = other.white_pawn_7;
+    white_pawn_8 = other.white_pawn_8;
+    black_pawn_1 = other.black_pawn_1;
+    black_pawn_2 = other.black_pawn_2;
+    black_pawn_3 = other.black_pawn_3;
+    black_pawn_4 = other.black_pawn_4;
+    black_pawn_5 = other.black_pawn_5;
+    black_pawn_6 = other.black_pawn_6;
+    black_pawn_7 = other.black_pawn_7;
+    black_pawn_8 = other.black_pawn_8;
 }
 
 void Game::create_white_squares() {
@@ -226,10 +266,10 @@ void Game::is_emp(int y, int x) {
 
     for(long unsigned int i = 0; i<pieces.size(); i++)
     {
-        if(pieces[i]->row == x and pieces[i]->col == y)
+        if(pieces[i]->get_row() == x and pieces[i]->get_col() == y)
         {
             pieces[i]->set_row_col(9,9);
-            pieces[i]->alive = false;
+            pieces[i]->set_alive(false);
 
         }
 
@@ -274,9 +314,9 @@ void Game::start_game() {
                         c2 = event.mouseButton.y/100;
                         std::cout<<c1<<" "<<c2<<" "<<c3<<" "<<c4<<"\n";
 
-                        for (long unsigned int i =0; i<pieces.size(); i++)
+                        for (long unsigned int i = 0; i<pieces.size(); i++)
                         {
-                            if(pieces[i]->move(c4,c3,c2,c1) && pieces[i]->row == c3 && pieces[i]->col == c4)
+                            if(pieces[i]->move(c4,c3,c2,c1) && pieces[i]->get_row() == c3 && pieces[i]->get_col() == c4)
                             {
                                 is_emp(c2,c1);
                                 pieces[i]->set_row_col(c2,c1);
@@ -284,6 +324,7 @@ void Game::start_game() {
                         }
                         c1 = 0;
                         c2 = 0;
+
                     }
                 }
             }
@@ -295,7 +336,7 @@ void Game::start_game() {
 
             for (long unsigned int i =0; i<pieces.size(); i++)
             {
-                if(pieces[i]->alive) window.draw(pieces[i]->get_sprite());
+                if(pieces[i]->get_alive()) window.draw(pieces[i]->get_sprite());
             }
 
             window.display();
