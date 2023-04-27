@@ -12,7 +12,7 @@ Knight::Knight(int x) {
     {
         texture.loadFromFile("Texturi/whiteknight.png", sf::IntRect(0,0,183,295));
         sprite.setTexture(texture);
-        sprite.setScale(100.0/183, 100.0/295);
+        sprite.setScale(float(100.0/183), float(100.0/295));
     }
     else
     {
