@@ -63,7 +63,6 @@ private:
 
     void create_white_squares();
     void move_pieces();
-    Piece * get_piece(int, int);
 
     void is_emp(int,int);
 

@@ -8,7 +8,7 @@ private:
 
 public:
     Bishop();
-    Bishop(int);
+    explicit Bishop(int);
     bool move(int,int,int,int) override;
     ~Bishop();
 };

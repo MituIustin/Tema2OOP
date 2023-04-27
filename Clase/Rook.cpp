@@ -14,13 +14,13 @@ Rook::Rook(int x) {
     {
         texture.loadFromFile("Texturi/whiterook.png", sf::IntRect(0,0,182,260));
         sprite.setTexture(texture);
-        sprite.setScale(100.0/212, 100.0/290);
+        sprite.setScale(float(100.0/212), float(100.0/290));
     }
     else
     {
         texture.loadFromFile("Texturi/blackrook.png", sf::IntRect(0,0,196,306));
         sprite.setTexture(texture);
-        sprite.setScale(100.0/196, 100.0/306);
+        sprite.setScale(float(100.0/196), float(100.0/306));
 
     }
 }

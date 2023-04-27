@@ -14,13 +14,13 @@ Pawn::Pawn(int x) {
     {
         texture.loadFromFile("Texturi/whitepawn.png", sf::IntRect(0,0,171,242));
         sprite.setTexture(texture);
-        sprite.setScale(100.0/171, 100.0/242);
+        sprite.setScale(float(100.0/171), float(100.0/242));
     }
     else
     {
         texture.loadFromFile("Texturi/blackpawn.png", sf::IntRect(0,0,172,232));
         sprite.setTexture(texture);
-        sprite.setScale(100.0/172, 100.0/232);
+        sprite.setScale(float(100.0/172), float(100.0/232));
 
     }
 }

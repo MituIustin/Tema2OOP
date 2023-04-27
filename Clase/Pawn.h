@@ -8,7 +8,7 @@ private:
 
 public:
     Pawn();
-    Pawn(int);
+    explicit Pawn(int);
     bool move(int,int,int,int) override;
     ~Pawn();
 };

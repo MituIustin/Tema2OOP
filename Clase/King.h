@@ -9,7 +9,7 @@ private:
 
 public:
     King();
-    King(int);
+    explicit King(int);
     King(const King&) ;
     bool move(int,int,int,int) override;
     ~King();

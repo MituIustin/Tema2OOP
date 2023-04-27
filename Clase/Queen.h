@@ -8,7 +8,7 @@ private:
 
 public:
     Queen();
-    Queen(int);
+    explicit Queen(int);
     bool move(int,int,int,int) override;
     ~Queen();
 };

@@ -18,7 +18,7 @@ Knight::Knight(int x) {
     {
         texture.loadFromFile("Texturi/blackknight.png", sf::IntRect(0,0,195,279));
         sprite.setTexture(texture);
-        sprite.setScale(100.0/195, 100.0/279);
+        sprite.setScale(float(100.0/195), float(100.0/279));
 
     }
 }

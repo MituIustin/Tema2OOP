@@ -12,13 +12,13 @@ Bishop::Bishop(int x) {
     {
         texture.loadFromFile("Texturi/whitebishop.png", sf::IntRect(0,0,163,275));
         sprite.setTexture(texture);
-        sprite.setScale(100.0/163, 100.0/275);
+        sprite.setScale( float(100.0/163), float(100.0/275));
     }
     else
     {
         texture.loadFromFile("Texturi/blackbishop.png", sf::IntRect(0,0,178,272));
         sprite.setTexture(texture);
-        sprite.setScale(100.0/178, 100.0/272);
+        sprite.setScale(float(100.0/178), float(100.0/272));
 
     }
 }

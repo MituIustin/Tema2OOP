@@ -8,7 +8,7 @@ private:
 
 public:
     Knight();
-    Knight(int );
+    explicit Knight(int );
     bool move(int,int,int,int) override;
     ~Knight();
 };

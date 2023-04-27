@@ -7,7 +7,7 @@ private:
 
 public:
     Rook();
-    Rook(int);
+    explicit Rook(int);
     bool move(int,int,int,int) override;
     ~Rook();
 };
