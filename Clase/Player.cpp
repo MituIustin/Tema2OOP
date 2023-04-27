@@ -12,6 +12,7 @@
 
 Player::Player() {
     std::cout<<"Constructor Player\n";
+    turn =1;
 }
 
 

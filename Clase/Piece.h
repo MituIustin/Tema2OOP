@@ -5,10 +5,10 @@
 
 class Piece {
 private:
-
+    void mv(int,int);
 public:
     Piece();
-    virtual void move() = 0;
+    virtual bool move(int,int,int,int) =0;
     sf::Texture get_texture();
     sf::Sprite get_sprite();
     void set_texture(sf::Texture);
@@ -16,10 +16,8 @@ public:
     virtual ~Piece();
     bool alive;
     void set_row_col(int, int);
-
-protected:
-
     int row,col;
+protected:
     sf::Texture texture;
     sf::Sprite sprite;
 

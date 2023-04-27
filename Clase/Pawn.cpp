@@ -1,6 +1,7 @@
 #include "Pawn.h"
 
 #include <iostream>
+#include <cmath>
 
 Pawn::Pawn() {
     std::cout<<"Constructor Pawn\n";
@@ -24,8 +25,10 @@ Pawn::Pawn(int x) {
     }
 }
 
-void Pawn::move() {
+bool Pawn::move(int x1, int x2, int y1, int y2) {
+    if(x2==y2 && abs(x1-y1)<=2) return true;
 
+    return false;
 }
 
 Pawn::~Pawn() {

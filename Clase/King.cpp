@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
+#include <cmath>
 King::King() {
     std::cout<<"Constructor King\n";
     alive = true;
@@ -32,8 +32,9 @@ King::King(const King &other)
 };
 
 
-void King::move() {
-
+bool King::move(int x1, int y1, int x2, int y2) {
+    if(abs(x1-x2)<=1 && abs(y1-y2)<=1) return true;
+    return false;
 }
 
 

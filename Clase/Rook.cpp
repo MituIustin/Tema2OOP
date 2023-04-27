@@ -1,6 +1,8 @@
 #include "Rook.h"
 #include <iostream>
 
+#include "Game.h"
+
 Rook::Rook() {
     std::cout<<"Constructor Rook\n";
     alive = true;
@@ -23,8 +25,11 @@ Rook::Rook(int x) {
     }
 }
 
-void Rook::move() {
+bool Rook::move(int x1, int y1, int x2, int y2) {
+    bool var = true;
+    if(x1 != x2 && y1 != y2) var = false;
 
+    return var;
 }
 
 Rook::~Rook() {

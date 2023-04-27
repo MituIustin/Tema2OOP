@@ -15,7 +15,9 @@
 
 class Player {
 private:
+
 public:
+    int turn;
     Player();
     ~Player();
 

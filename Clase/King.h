@@ -6,11 +6,12 @@
 
 class King : public Piece{
 private:
-    void move() override;
+
 public:
     King();
     King(int);
     King(const King&) ;
+    bool move(int,int,int,int) override;
     ~King();
 };
 

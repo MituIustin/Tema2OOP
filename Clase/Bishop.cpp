@@ -1,7 +1,6 @@
 #include "Bishop.h"
-
 #include <iostream>
-
+#include <cmath>
 Bishop::Bishop() {
     std::cout<<"Constructor Bishop\n";
     alive = true;
@@ -24,8 +23,9 @@ Bishop::Bishop(int x) {
     }
 }
 
-void Bishop::move() {
-
+bool Bishop::move(int x1, int y1, int x2, int y2) {
+    if(abs(x1-x2) == abs(y1-y2) || abs(x1-y1) == abs(x2-y2)) return true;
+    return  false;
 }
 
 Bishop::~Bishop() {

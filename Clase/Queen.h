@@ -5,10 +5,11 @@
 
 class Queen : public  Piece{
 private:
-    void move() override;
+
 public:
     Queen();
     Queen(int);
+    bool move(int,int,int,int) override;
     ~Queen();
 };
 

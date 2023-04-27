@@ -13,9 +13,11 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 class Game {
 private:
+
     std::vector <sf::Sprite> white_squares;
     Board board;
     Player first_player;
@@ -61,10 +63,15 @@ private:
 
     void create_white_squares();
     void move_pieces();
+    Piece * get_piece(int, int);
+
+    void is_emp(int,int);
 
 public:
+    std::vector<std::unique_ptr<Piece>> pieces;
     Game();
-    Game(const Game &other) ;
+    Game(const Game &other);
+    bool empty(int,int);
     void start_game();
 };
 

@@ -32,55 +32,262 @@ void Game::create_white_squares() {
 }
 
 void Game::move_pieces() {
+
     black_king.set_row_col(0, 4);
     white_king.set_row_col(7, 4);
+
+    pieces.emplace_back(std::move(std::make_unique<King>(white_king)));
+    pieces[pieces.size()-1]->set_row_col(7,4);
+    pieces[pieces.size()-1]->set_sprite(white_king.get_sprite());
+
+    pieces.emplace_back(std::move(std::make_unique<King>(black_king)));
+    pieces[pieces.size()-1]->set_row_col(0,4);
+    pieces[pieces.size()-1]->set_sprite(black_king.get_sprite());
 
     white_queen.set_row_col(7, 3);
     black_queen.set_row_col(0,3);
 
+    pieces.emplace_back(std::move(std::make_unique<Queen>(white_queen)));
+    pieces[pieces.size()-1]->set_row_col(7,3);
+    pieces[pieces.size()-1]->set_sprite(white_queen.get_sprite());
+
+    pieces.emplace_back(std::move(std::make_unique<Queen>(black_queen)));
+    pieces[pieces.size()-1]->set_row_col(0,3);
+    pieces[pieces.size()-1]->set_sprite(black_queen.get_sprite());
+
     white_rook_1.set_row_col(7,0);
+    pieces.emplace_back(std::move(std::make_unique<Rook>(white_rook_1)));
+    pieces[pieces.size()-1]->set_row_col(7,0);
+    pieces[pieces.size()-1]->set_sprite(white_rook_1.get_sprite());
+
     white_rook_2.set_row_col(7,7);
+    pieces.emplace_back(std::move(std::make_unique<Rook>(white_rook_2)));
+    pieces[pieces.size()-1]->set_row_col(7,7);
+    pieces[pieces.size()-1]->set_sprite(white_rook_2.get_sprite());
+
+
     black_rook_1.set_row_col(0,0);
+    pieces.emplace_back(std::move(std::make_unique<Rook>(black_rook_1)));
+    pieces[pieces.size()-1]->set_row_col(0,0);
+    pieces[pieces.size()-1]->set_sprite(black_rook_1.get_sprite());
+
+
     black_rook_2.set_row_col(0,7);
+    pieces.emplace_back(std::move(std::make_unique<Rook>(black_rook_2)));
+    pieces[pieces.size()-1]->set_row_col(0,7);
+    pieces[pieces.size()-1]->set_sprite(black_rook_2.get_sprite());
 
     white_knight_1.set_row_col(7,1);
+    pieces.emplace_back(std::move(std::make_unique<Knight>(white_knight_1)));
+    pieces[pieces.size()-1]->set_row_col(7,1);
+    pieces[pieces.size()-1]->set_sprite(white_knight_1.get_sprite());
+
     white_knight_2.set_row_col(7,6);
+    pieces.emplace_back(std::move(std::make_unique<Knight>(white_knight_2)));
+    pieces[pieces.size()-1]->set_row_col(7,6);
+    pieces[pieces.size()-1]->set_sprite(white_knight_2.get_sprite());
+
+
     black_knight_1.set_row_col(0,1);
+    pieces.emplace_back(std::move(std::make_unique<Knight>(black_knight_1)));
+    pieces[pieces.size()-1]->set_row_col(0,1);
+    pieces[pieces.size()-1]->set_sprite(black_knight_1.get_sprite());
+
+
     black_knight_2.set_row_col(0,6);
+    pieces.emplace_back(std::move(std::make_unique<Knight>(black_knight_2)));
+    pieces[pieces.size()-1]->set_row_col(0,6);
+    pieces[pieces.size()-1]->set_sprite(black_knight_2.get_sprite());
+
 
     white_bishop_1.set_row_col(7,2);
+    pieces.emplace_back(std::move(std::make_unique<Bishop>(white_bishop_1)));
+    pieces[pieces.size()-1]->set_row_col(7,2);
+    pieces[pieces.size()-1]->set_sprite(white_bishop_1.get_sprite());
+
+
     white_bishop_2.set_row_col(7,5);
+    pieces.emplace_back(std::move(std::make_unique<Bishop>(white_bishop_2)));
+    pieces[pieces.size()-1]->set_row_col(7,5);
+    pieces[pieces.size()-1]->set_sprite(white_bishop_2.get_sprite());
+
+
     black_bishop_1.set_row_col(0,2);
+    pieces.emplace_back(std::move(std::make_unique<Bishop>(black_bishop_1)));
+    pieces[pieces.size()-1]->set_row_col(0,2);
+    pieces[pieces.size()-1]->set_sprite(black_bishop_1.get_sprite());
+
+
     black_bishop_2.set_row_col(0,5);
+    pieces.emplace_back(std::move(std::make_unique<Bishop>(black_bishop_2)));
+    pieces[pieces.size()-1]->set_row_col(0,5);
+    pieces[pieces.size()-1]->set_sprite(black_bishop_2.get_sprite());
+
 
     white_pawn_1.set_row_col(6,0);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(white_pawn_1)));
+    pieces[pieces.size()-1]->set_row_col(6,0);
+    pieces[pieces.size()-1]->set_sprite(white_pawn_1.get_sprite());
+
+
     white_pawn_2.set_row_col(6,1);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(white_pawn_2)));
+    pieces[pieces.size()-1]->set_row_col(6,1);
+    pieces[pieces.size()-1]->set_sprite(white_pawn_2.get_sprite());
+
+
     white_pawn_3.set_row_col(6,2);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(white_pawn_3)));
+    pieces[pieces.size()-1]->set_row_col(6,2);
+    pieces[pieces.size()-1]->set_sprite(white_pawn_3.get_sprite());
+
+
     white_pawn_4.set_row_col(6,3);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(white_pawn_4)));
+    pieces[pieces.size()-1]->set_row_col(6,3);
+    pieces[pieces.size()-1]->set_sprite(white_pawn_4.get_sprite());
+
+
     white_pawn_5.set_row_col(6,4);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(white_pawn_5)));
+    pieces[pieces.size()-1]->set_row_col(6,4);
+    pieces[pieces.size()-1]->set_sprite(white_pawn_5.get_sprite());
+
+
     white_pawn_6.set_row_col(6,5);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(white_pawn_6)));
+    pieces[pieces.size()-1]->set_row_col(6,5);
+    pieces[pieces.size()-1]->set_sprite(white_pawn_6.get_sprite());
+
+
     white_pawn_7.set_row_col(6,6);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(white_pawn_7)));
+    pieces[pieces.size()-1]->set_row_col(6,6);
+    pieces[pieces.size()-1]->set_sprite(white_pawn_7.get_sprite());
+
+
     white_pawn_8.set_row_col(6,7);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(white_pawn_8)));
+    pieces[pieces.size()-1]->set_row_col(6,7);
+    pieces[pieces.size()-1]->set_sprite(white_pawn_8.get_sprite());
+
+
     black_pawn_1.set_row_col(1,0);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(black_pawn_1)));
+    pieces[pieces.size()-1]->set_row_col(1,0);
+    pieces[pieces.size()-1]->set_sprite(black_pawn_1.get_sprite());
+
+
     black_pawn_2.set_row_col(1,1);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(black_pawn_2)));
+    pieces[pieces.size()-1]->set_row_col(1,1);
+    pieces[pieces.size()-1]->set_sprite(black_pawn_2.get_sprite());
+
+
     black_pawn_3.set_row_col(1,2);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(black_pawn_3)));
+    pieces[pieces.size()-1]->set_row_col(1,2);
+    pieces[pieces.size()-1]->set_sprite(black_pawn_3.get_sprite());
+
+
     black_pawn_4.set_row_col(1,3);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(black_pawn_4)));
+    pieces[pieces.size()-1]->set_row_col(1,3);
+    pieces[pieces.size()-1]->set_sprite(black_pawn_4.get_sprite());
+
+
     black_pawn_5.set_row_col(1,4);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(black_pawn_5)));
+    pieces[pieces.size()-1]->set_row_col(1,4);
+    pieces[pieces.size()-1]->set_sprite(black_pawn_5.get_sprite());
+
+
     black_pawn_6.set_row_col(1,5);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(black_pawn_6)));
+    pieces[pieces.size()-1]->set_row_col(1,5);
+    pieces[pieces.size()-1]->set_sprite(black_pawn_6.get_sprite());
+
+
     black_pawn_7.set_row_col(1,6);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(black_pawn_7)));
+    pieces[pieces.size()-1]->set_row_col(1,6);
+    pieces[pieces.size()-1]->set_sprite(black_pawn_7.get_sprite());
+
+
     black_pawn_8.set_row_col(1,7);
+    pieces.emplace_back(std::move(std::make_unique<Pawn>(black_pawn_8)));
+    pieces[pieces.size()-1]->set_row_col(1,7);
+    pieces[pieces.size()-1]->set_sprite(black_pawn_8.get_sprite());
+
 
 }
 
+Piece * Game::get_piece(int x, int y) {
+
+    if(white_rook_1.col == y && white_rook_1.row == x) return &white_rook_1;
+    if(white_rook_2.col == y && white_rook_2.row == x) return &white_rook_2;
+    if(black_rook_1.col == y && black_rook_1.row == x) return &black_rook_1;
+    if(black_rook_2.col == y && black_rook_2.row == x) return &black_rook_2;
+
+    if(white_bishop_1.col == y && white_bishop_1.row == x) return &white_bishop_1;
+    if(white_bishop_2.col == y && white_bishop_2.row == x) return &white_bishop_2;
+    if(black_bishop_1.col == y && black_bishop_1.row == x) return &black_bishop_1;
+    if(black_bishop_2.col == y && black_bishop_2.row == x) return &black_bishop_2;
+
+    if(white_knight_1.col == y && white_knight_1.row == x) return &white_knight_1;
+    if(white_knight_2.col == y && white_knight_2.row == x) return &white_knight_2;
+    if(black_knight_1.col == y && black_knight_1.row == x) return &black_knight_1;
+    if(black_knight_2.col == y && black_knight_2.row == x) return &black_knight_2;
+
+    if(white_king.col == y && white_king.row == x) return &white_king;
+    if(black_king.col == y && black_king.row == x) return &black_king;
+
+    if(white_queen.col == y && white_queen.row == x) return &white_queen;
+    if(black_queen.col == y && black_queen.row == x) return &black_queen;
+
+    if(white_pawn_1.col == y && white_pawn_1.row == x) return &white_pawn_1;
+    if(white_pawn_2.col == y && white_pawn_2.row == x) return &white_pawn_2;
+    if(white_pawn_3.col == y && white_pawn_3.row == x) return &white_pawn_3;
+    if(white_pawn_4.col == y && white_pawn_4.row == x) return &white_pawn_4;
+    if(white_pawn_5.col == y && white_pawn_5.row == x) return &white_pawn_5;
+    if(white_pawn_6.col == y && white_pawn_6.row == x) return &white_pawn_6;
+    if(white_pawn_7.col == y && white_pawn_7.row == x) return &white_pawn_7;
+    if(white_pawn_8.col == y && white_pawn_8.row == x) return &white_pawn_8;
+    if(black_pawn_1.col == y && black_pawn_1.row == x) return &black_pawn_1;
+    if(black_pawn_2.col == y && black_pawn_2.row == x) return &black_pawn_2;
+    if(black_pawn_3.col == y && black_pawn_3.row == x) return &black_pawn_3;
+    if(black_pawn_4.col == y && black_pawn_4.row == x) return &black_pawn_4;
+    if(black_pawn_5.col == y && black_pawn_5.row == x) return &black_pawn_5;
+    if(black_pawn_6.col == y && black_pawn_6.row == x) return &black_pawn_6;
+    if(black_pawn_7.col == y && black_pawn_7.row == x) return &black_pawn_7;
+    if(black_pawn_8.col == y && black_pawn_8.row == x) return &black_pawn_8;
+    return nullptr;
+}
+
+void Game::is_emp(int y, int x) {
+
+    for(int i = 0; i<pieces.size(); i++)
+    {
+        if(pieces[i]->row == x and pieces[i]->col == y)
+        {
+            pieces[i]->set_row_col(9,9);
+            pieces[i]->alive = false;
+
+        }
+
+    }
+}
 
 void Game::start_game() {
 
     move_pieces();
+
     sf::RenderWindow window(sf::VideoMode(800, 800), "Chess ");
     window.setVerticalSyncEnabled(true);
 
     create_white_squares();
 
+    int c1=0,c2=0,c3=0,c4=0;
 
     while (window.isOpen())
     {
@@ -92,49 +299,46 @@ void Game::start_game() {
                 window.close();
             }
 
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    if(c1 == 0 && c2 == 0)
+                    {
+                        c1 = event.mouseButton.x/100;
+                        c2 = event.mouseButton.y/100;
+                    }
+                    else
+                    {
+                        c3 = c1;
+                        c4 = c2;
+                        c1 = event.mouseButton.x/100;
+                        c2 = event.mouseButton.y/100;
+                        std::cout<<c1<<" "<<c2<<" "<<c3<<" "<<c4<<"\n";
+
+                        for (int i =0; i<pieces.size(); i++)
+                        {
+                            if(pieces[i]->move(c4,c3,c2,c1) && pieces[i]->row == c3 && pieces[i]->col == c4)
+                            {
+                                is_emp(c2,c1);
+                                pieces[i]->set_row_col(c2,c1);
+                            }
+                        }
+                        c1 = 0;
+                        c2 = 0;
+                    }
+                }
+            }
+
+
             window.clear(sf::Color::Black);
 
             for (auto square : white_squares) window.draw(square);
 
-
-
-            if(white_king.alive) window.draw(white_king.get_sprite());
-            if(black_king.alive) window.draw(black_king.get_sprite());
-
-            if(white_queen.alive) window.draw(white_queen.get_sprite());
-            if(black_queen.alive) window.draw(black_queen.get_sprite());
-
-            if(white_rook_1.alive) window.draw(white_rook_1.get_sprite());
-            if(white_rook_2.alive) window.draw(white_rook_2.get_sprite());
-            if(black_rook_1.alive) window.draw(black_rook_1.get_sprite());
-            if(black_rook_2.alive) window.draw(black_rook_2.get_sprite());
-
-            if(white_knight_1.alive) window.draw(white_knight_1.get_sprite());
-            if(white_knight_2.alive) window.draw(white_knight_2.get_sprite());
-            if(black_knight_1.alive) window.draw(black_knight_1.get_sprite());
-            if(black_knight_2.alive) window.draw(black_knight_2.get_sprite());
-
-            if(white_bishop_1.alive) window.draw(white_bishop_1.get_sprite());
-            if(white_bishop_2.alive) window.draw(white_bishop_2.get_sprite());
-            if(black_bishop_1.alive) window.draw(black_bishop_1.get_sprite());
-            if(black_bishop_2.alive) window.draw(black_bishop_2.get_sprite());
-
-            if(white_pawn_1.alive) window.draw(white_pawn_1.get_sprite());
-            if(white_pawn_2.alive) window.draw(white_pawn_2.get_sprite());
-            if(white_pawn_3.alive) window.draw(white_pawn_3.get_sprite());
-            if(white_pawn_4.alive) window.draw(white_pawn_4.get_sprite());
-            if(white_pawn_5.alive) window.draw(white_pawn_5.get_sprite());
-            if(white_pawn_6.alive) window.draw(white_pawn_6.get_sprite());
-            if(white_pawn_7.alive) window.draw(white_pawn_7.get_sprite());
-            if(white_pawn_8.alive) window.draw(white_pawn_8.get_sprite());
-            if(black_pawn_1.alive) window.draw(black_pawn_1.get_sprite());
-            if(black_pawn_2.alive) window.draw(black_pawn_2.get_sprite());
-            if(black_pawn_3.alive) window.draw(black_pawn_3.get_sprite());
-            if(black_pawn_4.alive) window.draw(black_pawn_4.get_sprite());
-            if(black_pawn_5.alive) window.draw(black_pawn_5.get_sprite());
-            if(black_pawn_6.alive) window.draw(black_pawn_6.get_sprite());
-            if(black_pawn_7.alive) window.draw(black_pawn_7.get_sprite());
-            if(black_pawn_8.alive) window.draw(black_pawn_8.get_sprite());
+            for (int i =0; i<pieces.size(); i++)
+            {
+                if(pieces[i]->alive) window.draw(pieces[i]->get_sprite());
+            }
 
             window.display();
         }

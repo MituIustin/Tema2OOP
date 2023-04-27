@@ -23,8 +23,16 @@ Knight::Knight(int x) {
     }
 }
 
-void Knight::move() {
-
+bool Knight::move(int x1, int y1, int x2, int y2) {
+    if(x1 == x2 - 2 && y1 == y2 - 1) return true;
+    if(x1 == x2 - 2 && y1 == y2 + 1) return true;
+    if(x1 == x2 + 2 && y1 == y2 - 1) return true;
+    if(x1 == x2 + 2 && y1 == y2 + 1) return true;
+    if(x1 == x2 - 1 && y1 == y2 - 2) return true;
+    if(x1 == x2 - 1 && y1 == y2 + 2) return true;
+    if(x1 == x2 + 1 && y1 == y2 - 2) return true;
+    if(x1 == x2 + 1 && y1 == y2 + 2) return true;
+    return false;
 }
 
 Knight::~Knight() {
