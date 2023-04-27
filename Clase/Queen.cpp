@@ -32,10 +32,9 @@ bool Queen::move(int x1, int y1, int x2, int y2) {
     return  var;
 }
 
-Queen::Queen(const Queen & other) {
+Queen::Queen(const Queen & other) :name(other.name) {
     std::cout<<"CC Queen\n";
     alive = other.alive;
-    name = other.name;
 }
 
 Queen &Queen::operator=(const Queen & other) {

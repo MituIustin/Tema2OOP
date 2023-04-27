@@ -26,16 +26,14 @@ King::King(int x) {
     name = "king";
 }
 
-King::King(const King &other) {
+King::King(const King &other) : name(other.name) {
     std::cout<<"CC King\n";
     alive = other.alive;
-    name = other.name;
 };
 
 King &King::operator=(const King & other) {
     std::cout<<"OP= King\n";
     alive = other.alive;
-    name = other.name;
     return *this;
 }
 

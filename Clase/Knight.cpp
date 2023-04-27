@@ -25,10 +25,9 @@ Knight::Knight(int x) {
     name = "knight";
 }
 
-Knight::Knight(const Knight & other) {
+Knight::Knight(const Knight & other) : name(other.name){
     std::cout<<"CC Knight\n";
     alive = other.alive;
-    name = other.name;
 }
 
 Knight &Knight::operator=(const Knight & other) {

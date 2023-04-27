@@ -25,9 +25,9 @@ Bishop::Bishop(int x) {
     name = "bishop";
 }
 
-Bishop::Bishop(const Bishop & other) {
+Bishop::Bishop(const Bishop & other) : name(other.name) {
     std::cout<<"CC Bishop\n";
-    name = other.name;
+    alive = other.alive;
 }
 
 Bishop &Bishop::operator=(const Bishop & other) {

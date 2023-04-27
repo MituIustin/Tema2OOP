@@ -31,10 +31,9 @@ bool Rook::move(int x1, int y1, int x2, int y2) {
     return var;
 }
 
-Rook::Rook(const Rook & other) {
+Rook::Rook(const Rook & other) : name(other.name){
     std::cout<<"CC Rook\n";
     alive = other.alive;
-    name = other.name;
 }
 
 Rook &Rook::operator=(const Rook & other) {

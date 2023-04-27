@@ -31,10 +31,9 @@ bool Pawn::move(int x1, int x2, int y1, int y2) {
     return false;
 }
 
-Pawn::Pawn(const Pawn & other) {
+Pawn::Pawn(const Pawn & other) : name(other.name) {
     std::cout<<"CC Pawn\n";
     alive = other.alive;
-    name = other.name;
 }
 
 Pawn &Pawn::operator=(const Pawn & other) {
