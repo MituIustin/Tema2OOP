@@ -3,13 +3,12 @@
 #include <iostream>
 #include <cmath>
 
-Pawn::Pawn() {
+Pawn::Pawn() : name("pawn"){
     std::cout<<"Constructor Pawn\n";
     alive = true;
-    name = "pawn";
 }
 
-Pawn::Pawn(int x) {
+Pawn::Pawn(int x): name("pawn") {
     alive = true;
     if(x==0)
     {
@@ -23,7 +22,6 @@ Pawn::Pawn(int x) {
         sprite.setTexture(texture);
         sprite.setScale(float(100.0/172), float(100.0/232));
     }
-    name = "pawn";
 }
 
 bool Pawn::move(int x1, int x2, int y1, int y2) {

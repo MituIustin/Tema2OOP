@@ -1,13 +1,12 @@
 #include "Knight.h"
 #include <iostream>
 
-Knight::Knight() {
+Knight::Knight(): name("knight") {
     std::cout<<"Constructor Knight\n";
     alive = true;
-    name = "knight";
 }
 
-Knight::Knight(int x) {
+Knight::Knight(int x) : name("knight"){
     alive = true;
     if(x==0)
     {
@@ -22,7 +21,6 @@ Knight::Knight(int x) {
         sprite.setScale(float(100.0/195), float(100.0/279));
 
     }
-    name = "knight";
 }
 
 Knight::Knight(const Knight & other) : name(other.name){

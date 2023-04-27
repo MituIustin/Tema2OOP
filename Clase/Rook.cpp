@@ -1,15 +1,13 @@
 #include "Rook.h"
 #include <iostream>
 
-Rook::Rook() {
+Rook::Rook() : name("rook") {
     std::cout<<"Constructor Rook\n";
     alive = true;
-    name = "rook";
 }
 
-Rook::Rook(int x) {
+Rook::Rook(int x) : name("rook") {
     alive = true;
-    name = "rook";
     if(x==0)
     {
         texture.loadFromFile("Texturi/whiterook.png", sf::IntRect(0,0,182,260));

@@ -1,13 +1,12 @@
 #include "Bishop.h"
 #include <iostream>
 #include <cmath>
-Bishop::Bishop() {
+Bishop::Bishop() : name("bishop"){
     std::cout<<"Constructor Bishop\n";
     alive = true;
-    name = "bishop";
 }
 
-Bishop::Bishop(int x) {
+Bishop::Bishop(int x) : name("bishop"){
     alive = true;
     if(x==0)
     {
@@ -22,7 +21,6 @@ Bishop::Bishop(int x) {
         sprite.setScale(float(100.0/178), float(100.0/272));
 
     }
-    name = "bishop";
 }
 
 Bishop::Bishop(const Bishop & other) : name(other.name) {

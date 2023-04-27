@@ -3,13 +3,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
-King::King() {
+King::King() : name("king"){
     std::cout<<"Constructor King\n";
     alive = true;
-    name = "king";
 }
 
-King::King(int x) {
+King::King(int x): name("king") {
     alive = true;
     if(x==0)
     {
@@ -23,7 +22,6 @@ King::King(int x) {
         sprite.setTexture(texture);
         sprite.setScale(float(100.0/226), float(100.0/336));
     }
-    name = "king";
 }
 
 King::King(const King &other) : name(other.name) {

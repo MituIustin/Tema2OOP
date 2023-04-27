@@ -1,15 +1,13 @@
 #include "Queen.h"
 #include <iostream>
 
-Queen::Queen() {
+Queen::Queen() : name("queen") {
     std::cout<<"Constructor Queen\n";
     alive = true;
-    name = "queen";
 }
 
-Queen::Queen(int x) {
+Queen::Queen(int x): name("queen") {
     alive = true;
-    name = "queen";
     if(x==0)
     {
         texture.loadFromFile("Texturi/whitequeen.png", sf::IntRect(0,0,183,286));
