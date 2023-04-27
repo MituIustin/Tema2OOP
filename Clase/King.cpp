@@ -27,6 +27,8 @@ King::King(int x): name("king") {
         sprite.setTexture(texture);
         sprite.setScale(float(100.0/226), float(100.0/336));
     }
+    number_of_pieces++;
+    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
 }
 
 King::King(const King &other) : name(other.name) {

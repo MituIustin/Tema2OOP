@@ -26,6 +26,8 @@ Rook::Rook(int x) : name("rook") {
         sprite.setScale(float(100.0/196), float(100.0/306));
 
     }
+    number_of_pieces++;
+    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
 }
 
 bool Rook::move(int x1, int y1, int x2, int y2) {

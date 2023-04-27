@@ -20,6 +20,7 @@ public:
     sf::Sprite get_sprite();
 
 protected:
+    static int number_of_pieces;
     bool alive;
     sf::Texture texture;
     sf::Sprite sprite;

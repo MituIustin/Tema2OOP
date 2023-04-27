@@ -26,6 +26,8 @@ Knight::Knight(int x) : name("knight"){
         sprite.setScale(float(100.0/195), float(100.0/279));
 
     }
+    number_of_pieces++;
+    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
 }
 
 Knight::Knight(const Knight & other) : name(other.name){

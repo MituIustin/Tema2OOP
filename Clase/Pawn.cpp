@@ -27,6 +27,8 @@ Pawn::Pawn(int x): name("pawn") {
         sprite.setTexture(texture);
         sprite.setScale(float(100.0/172), float(100.0/232));
     }
+    number_of_pieces++;
+    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
 }
 
 bool Pawn::move(int x1, int x2, int y1, int y2) {

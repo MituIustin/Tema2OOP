@@ -271,6 +271,10 @@ void Game::is_emp(int y, int x) {
     }
 }
 
+void Game::finish(int c1, int c2, int c3, int c4) {
+    std::cout<<"Piesa mutata de la ( "<<c4<<" , "<<c3<<" ) la ( "<<c2<<" , "<<c1<<" ). \n";
+}
+
 void Game::start_game() {
 
     // testing clone constructors
@@ -322,7 +326,6 @@ void Game::start_game() {
                         c4 = c2;
                         c1 = event.mouseButton.x/100;
                         c2 = event.mouseButton.y/100;
-                        std::cout<<c1<<" "<<c2<<" "<<c3<<" "<<c4<<"\n";
 
                         for (long unsigned int i = 0; i<pieces.size(); i++)
                         {
@@ -330,6 +333,7 @@ void Game::start_game() {
                             {
                                 is_emp(c2,c1);
                                 pieces[i]->set_row_col(c2,c1);
+                                finish(c1,c2,c3,c4);
                             }
                         }
                         c1 = 0;

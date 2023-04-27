@@ -26,6 +26,8 @@ Queen::Queen(int x): name("queen") {
         sprite.setScale(float(100.0/200), float(100.0/300));
 
     }
+    number_of_pieces++;
+    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
 }
 
 bool Queen::move(int x1, int y1, int x2, int y2) {

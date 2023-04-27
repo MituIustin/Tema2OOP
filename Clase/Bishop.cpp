@@ -26,6 +26,8 @@ Bishop::Bishop(int x) : name("bishop"){
         sprite.setScale(float(100.0/178), float(100.0/272));
 
     }
+    number_of_pieces++;
+    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
 }
 
 Bishop::Bishop(const Bishop & other) : name(other.name) {

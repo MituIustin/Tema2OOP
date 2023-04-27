@@ -2,13 +2,14 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+int Piece::number_of_pieces = 0;
+
 Piece::Piece() {
     std::cout<<"Constructor Piece\n";
     alive = true;
     row = 9;
     col = 9;
 }
-
 
 Piece *Piece::clone() const {
     return nullptr;

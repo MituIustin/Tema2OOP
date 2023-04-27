@@ -17,7 +17,6 @@
 
 class Game {
 private:
-
     std::vector <sf::Sprite> white_squares;
     Board board;
     Player first_player;
@@ -65,6 +64,8 @@ private:
     void move_pieces();
 
     void is_emp(int,int);
+
+    static void finish(int, int ,int ,int );
 
 public:
     std::vector<std::unique_ptr<Piece>> pieces;
