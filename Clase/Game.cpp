@@ -273,6 +273,21 @@ void Game::is_emp(int y, int x) {
 
 void Game::start_game() {
 
+    // testing clone constructors
+
+    Rook r;
+    Knight k;
+    Bishop b;
+    King kg;
+    Queen q;
+    Pawn pa;
+    r.clone();
+    k.clone();
+    b.clone();
+    kg.clone();
+    q.clone();
+    pa.clone();
+
     move_pieces();
 
     sf::RenderWindow window(sf::VideoMode(800, 800), "Chess ");
