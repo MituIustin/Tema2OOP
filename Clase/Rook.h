@@ -10,6 +10,7 @@ private:
 public:
     Rook();
     explicit Rook(int);
+    Rook * clone() const override;
     Rook (const Rook&);
     Rook & operator=(const Rook &);
     bool move(int,int,int,int) override;

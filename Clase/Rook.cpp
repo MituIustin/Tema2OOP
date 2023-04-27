@@ -6,6 +6,11 @@ Rook::Rook() : name("rook") {
     alive = true;
 }
 
+Rook *Rook::clone() const {
+    std::cout<<"Constructor Clone Rook\n";
+    return new Rook(*this);
+}
+
 Rook::Rook(int x) : name("rook") {
     alive = true;
     if(x==0)

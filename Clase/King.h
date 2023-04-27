@@ -11,6 +11,7 @@ private:
 public:
     King();
     explicit King(int);
+    King * clone() const override;
     King(const King&);
     King & operator=(const King&);
     bool move(int,int,int,int) override;

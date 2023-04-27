@@ -8,6 +8,11 @@ Pawn::Pawn() : name("pawn"){
     alive = true;
 }
 
+Pawn *Pawn::clone() const {
+    std::cout<<"Constructor Clone Pawn\n";
+    return new Pawn(*this);
+}
+
 Pawn::Pawn(int x): name("pawn") {
     alive = true;
     if(x==0)

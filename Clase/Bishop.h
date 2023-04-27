@@ -10,6 +10,7 @@ private:
 public:
     Bishop();
     explicit Bishop(int);
+    Bishop * clone() const override;
     Bishop(const Bishop&);
     Bishop & operator=(const Bishop&);
     bool move(int,int,int,int) override;

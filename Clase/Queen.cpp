@@ -6,6 +6,11 @@ Queen::Queen() : name("queen") {
     alive = true;
 }
 
+Queen *Queen::clone() const {
+    std::cout<<"Constructor Clone Queen\n";
+    return new Queen(*this);
+}
+
 Queen::Queen(int x): name("queen") {
     alive = true;
     if(x==0)

@@ -6,6 +6,11 @@ Bishop::Bishop() : name("bishop"){
     alive = true;
 }
 
+Bishop *Bishop::clone() const {
+    std::cout<<"Constructor Clone Bishop\n";
+    return new Bishop(*this);
+}
+
 Bishop::Bishop(int x) : name("bishop"){
     alive = true;
     if(x==0)

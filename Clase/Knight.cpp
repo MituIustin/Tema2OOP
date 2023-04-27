@@ -6,6 +6,11 @@ Knight::Knight(): name("knight") {
     alive = true;
 }
 
+Knight *Knight::clone() const {
+    std::cout<<"Constructor Clone Knight\n";
+    return new Knight(*this);
+}
+
 Knight::Knight(int x) : name("knight"){
     alive = true;
     if(x==0)

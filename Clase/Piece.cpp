@@ -9,6 +9,13 @@ Piece::Piece() {
     col = 9;
 }
 
+/*
+Piece *Piece::clone() const {
+    std::cout<<"Constructor Clone Piece\n";
+    return new Piece(*this);
+}
+ */
+
 bool Piece::move(int x1,int x2,int x3,int x4) {
     if(x1 == 0 && x2 == 0 && x3 == 0 && x4 == 0) return true;
     return false;

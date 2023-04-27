@@ -10,6 +10,7 @@ private:
 public:
     Knight();
     explicit Knight(int);
+    Knight * clone() const override;
     Knight(const Knight&);
     Knight& operator=(const Knight&);
     bool move(int,int,int,int) override;

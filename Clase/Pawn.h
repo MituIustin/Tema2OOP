@@ -10,6 +10,7 @@ private:
 public:
     Pawn();
     explicit Pawn(int);
+    Pawn * clone() const override;
     Pawn(const Pawn&);
     Pawn & operator=(const Pawn&);
     bool move(int,int,int,int) override;

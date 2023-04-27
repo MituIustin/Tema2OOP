@@ -8,6 +8,7 @@ private:
     int row,col;
 public:
     Piece();
+    virtual Piece * clone() const = 0;
     virtual ~Piece();
     virtual bool move(int,int,int,int) =0;
     void set_row_col(int, int);

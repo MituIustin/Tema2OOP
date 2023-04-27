@@ -10,6 +10,7 @@ private:
 public:
     Queen();
     explicit Queen(int);
+    Queen * clone() const override;
     Queen(const Queen&);
     Queen & operator=(const Queen&);
     bool move(int,int,int,int) override;

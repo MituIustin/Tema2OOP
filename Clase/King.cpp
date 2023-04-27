@@ -8,6 +8,11 @@ King::King() : name("king"){
     alive = true;
 }
 
+King *King::clone() const {
+    std::cout<<"Constructor Clone King\n";
+    return new King(*this);
+}
+
 King::King(int x): name("king") {
     alive = true;
     if(x==0)
