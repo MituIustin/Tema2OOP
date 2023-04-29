@@ -12,10 +12,10 @@ Contine:
 - Smart Pointers ✔
 - Suprascrieri CC/OP= ✔
 - STL ✔
+- Metode / Atribute statice ✔
 
 Ce mai trebuie implementat:
 
-- Metode / Atribute statice
 - Ierarhie de exeptii 
 - Dynamic Cast 
 - Adaugarea tuturor regulilor de sah 
