@@ -6,7 +6,7 @@
 
 class Exception : public std::exception {
 public:
-    Exception(const std::string& message);
+    explicit Exception(const std::string& message);
 
     virtual const char* what() const noexcept override;
 
