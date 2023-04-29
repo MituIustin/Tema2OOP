@@ -1,4 +1,5 @@
 #include "Rook.h"
+#include "Exception.h"
 #include <iostream>
 
 Rook::Rook() : name("rook") {
@@ -13,18 +14,26 @@ Rook *Rook::clone() const {
 
 Rook::Rook(int x) : name("rook") {
     alive = true;
-    if(x==0)
-    {
-        texture.loadFromFile("Texturi/whiterook.png", sf::IntRect(0,0,182,260));
-        sprite.setTexture(texture);
-        sprite.setScale(float(100.0/212), float(100.0/290));
-    }
-    else
-    {
-        texture.loadFromFile("Texturi/blackrook.png", sf::IntRect(0,0,196,306));
-        sprite.setTexture(texture);
-        sprite.setScale(float(100.0/196), float(100.0/306));
+    try {
+        if(x==0)
+        {
+            if (!texture.loadFromFile("Texturi/whiterook.png", sf::IntRect(0,0,182,260)))
+                throw NoTexture();
+            sprite.setTexture(texture);
+            sprite.setScale(float(100.0/212), float(100.0/290));
+        }
+        else
+        {
+            if (!texture.loadFromFile("Texturi/blackrook.png", sf::IntRect(0,0,196,306)))
+                throw NoTexture();
+            sprite.setTexture(texture);
+            sprite.setScale(float(100.0/196), float(100.0/306));
 
+        }
+    }
+    catch (const Exception & e)
+    {
+        std::cout<<"Error: "<<e.what();
     }
     number_of_pieces++;
     std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";

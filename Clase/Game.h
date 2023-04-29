@@ -68,7 +68,7 @@ private:
     static void finish(int, int ,int ,int );
 
 public:
-    std::vector<std::unique_ptr<Piece>> pieces;
+    std::vector<std::shared_ptr<Piece>> pieces;
     Game();
     Game(const Game &other);
     bool empty(int,int);

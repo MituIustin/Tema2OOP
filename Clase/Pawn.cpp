@@ -1,5 +1,5 @@
 #include "Pawn.h"
-
+#include "Exception.h"
 #include <iostream>
 #include <cmath>
 
@@ -15,17 +15,25 @@ Pawn *Pawn::clone() const {
 
 Pawn::Pawn(int x): name("pawn") {
     alive = true;
-    if(x==0)
-    {
-        texture.loadFromFile("Texturi/whitepawn.png", sf::IntRect(0,0,171,242));
-        sprite.setTexture(texture);
-        sprite.setScale(float(100.0/171), float(100.0/242));
+    try {
+        if(x==0)
+        {
+            if(!texture.loadFromFile("Texturi/whitepawn.png", sf::IntRect(0,0,171,242)))
+                throw NoTexture();
+            sprite.setTexture(texture);
+            sprite.setScale(float(100.0/171), float(100.0/242));
+        }
+        else
+        {
+            if(!texture.loadFromFile("Texturi/blackpawn.png", sf::IntRect(0,0,172,232)))
+                throw NoTexture();
+            sprite.setTexture(texture);
+            sprite.setScale(float(100.0/172), float(100.0/232));
+        }
     }
-    else
+    catch (const Exception & e)
     {
-        texture.loadFromFile("Texturi/blackpawn.png", sf::IntRect(0,0,172,232));
-        sprite.setTexture(texture);
-        sprite.setScale(float(100.0/172), float(100.0/232));
+        std::cout<<"Error: "<<e.what();
     }
     number_of_pieces++;
     std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";

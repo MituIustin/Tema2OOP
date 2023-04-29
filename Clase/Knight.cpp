@@ -1,4 +1,5 @@
 #include "Knight.h"
+#include "Exception.h"
 #include <iostream>
 
 Knight::Knight(): name("knight") {
@@ -15,13 +16,28 @@ Knight::Knight(int x) : name("knight"){
     alive = true;
     if(x==0)
     {
-        texture.loadFromFile("Texturi/whiteknight.png", sf::IntRect(0,0,183,295));
+        try {
+            if(!texture.loadFromFile("Texturi/whiteknight.png", sf::IntRect(0,0,183,295)))
+                throw NoTexture();
+
+        }
+        catch (const Exception & e)
+        {
+            std::cout<<"Error: "<<e.what();
+        }
         sprite.setTexture(texture);
         sprite.setScale(float(100.0/183), float(100.0/295));
     }
     else
     {
-        texture.loadFromFile("Texturi/blackknight.png", sf::IntRect(0,0,195,279));
+        try {
+            if(!texture.loadFromFile("Texturi/blackknight.png", sf::IntRect(0,0,195,279)))
+                throw NoTexture();
+        }
+        catch (const Exception & e)
+        {
+            std::cout<<"Error: "<<e.what();
+        }
         sprite.setTexture(texture);
         sprite.setScale(float(100.0/195), float(100.0/279));
 

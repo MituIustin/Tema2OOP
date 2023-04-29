@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include "Exception.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -48,8 +49,15 @@ sf::Sprite Piece::get_sprite() {
 void Piece::set_row_col(int x, int y) {
     col = x;
     row = y;
-    sprite.setPosition(row*100, col*100);
+    try {
+        if(x >=0 && x<=9 && y>=0 && y<=9) sprite.setPosition(row*100, col*100);
+        else throw NotValidXY();
+    }
+    catch (const Exception& e) {
+        std::cout<<"Error: "<<e.what();
+    }
 }
+
 
 Piece::~Piece() {
     std::cout<<"Destructor Piece\n";

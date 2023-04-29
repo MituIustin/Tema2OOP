@@ -93,7 +93,7 @@ endif()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp Clase/Game.cpp Clase/Game.h Clase/Board.cpp Clase/Board.h Clase/Player.cpp Clase/Player.h Clase/Piece.cpp Clase/Piece.h Clase/Pawn.cpp Clase/Pawn.h Clase/Rook.cpp Clase/Rook.h Clase/Knight.cpp Clase/Knight.h Clase/Bishop.cpp Clase/Bishop.h Clase/King.cpp Clase/King.h Clase/Queen.cpp Clase/Queen.h)
+add_executable(${PROJECT_NAME} main.cpp Clase/Game.cpp Clase/Game.h Clase/Board.cpp Clase/Board.h Clase/Player.cpp Clase/Player.h Clase/Piece.cpp Clase/Piece.h Clase/Pawn.cpp Clase/Pawn.h Clase/Rook.cpp Clase/Rook.h Clase/Knight.cpp Clase/Knight.h Clase/Bishop.cpp Clase/Bishop.h Clase/King.cpp Clase/King.h Clase/Queen.cpp Clase/Queen.h Clase/Exception.cpp Clase/Exception.h)
 
 ###############################################################################
 

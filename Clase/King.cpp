@@ -1,5 +1,5 @@
 #include "King.h"
-
+#include "Exception.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -17,13 +17,27 @@ King::King(int x): name("king") {
     alive = true;
     if(x==0)
     {
-        texture.loadFromFile("Texturi/whiteking.png", sf::IntRect(0,0,188,309));
+        try {
+            if(!texture.loadFromFile("Texturi/whiteking.png", sf::IntRect(0,0,188,309)))
+                throw NoTexture();
+        }
+        catch (const Exception & e)
+        {
+            std::cout<<"Error: "<<e.what();
+        }
         sprite.setTexture(texture);
         sprite.setScale(float(100.0/218), float(100.0/339));
     }
     else
     {
-        texture.loadFromFile("Texturi/blackking.png", sf::IntRect(0,0,196,306));
+        try {
+            if(!texture.loadFromFile("Texturi/blackking.png", sf::IntRect(0,0,196,306)))
+                throw NoTexture();
+        }
+        catch (const Exception & e)
+        {
+            std::cout<<"Error: "<<e.what();
+        }
         sprite.setTexture(texture);
         sprite.setScale(float(100.0/226), float(100.0/336));
     }

@@ -2,6 +2,7 @@
 #define OOP_PIECE_H
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 class Piece {
 private:
@@ -18,7 +19,6 @@ public:
     void set_alive(bool);
     void set_sprite(sf::Sprite);
     sf::Sprite get_sprite();
-
 protected:
     static int number_of_pieces;
     bool alive;
