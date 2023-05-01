@@ -9,7 +9,6 @@ private:
     std::string name;
 public:
     Bishop();
-    explicit Bishop(int);
     Bishop * clone() const override;
     Bishop(const Bishop&);
     Bishop & operator=(const Bishop&);

@@ -7,7 +7,6 @@
 class Exception : public std::exception {
 public:
     explicit Exception(const std::string& message);
-
     virtual const char* what() const noexcept override;
 
 private:
@@ -37,6 +36,11 @@ public:
 class ClassNotUsed : public Exception {
 public:
     ClassNotUsed() : Exception("This class is never used ") {}
+};
+
+class NoPieces : public Exception {
+public:
+    NoPieces() : Exception("There is no piece created / All pieces have been deleted . \n") {}
 };
 
 #endif  // EXCEPTION_H

@@ -9,7 +9,6 @@ private:
     std::string name;
 public:
     Pawn();
-    explicit Pawn(int);
     Pawn * clone() const override;
     Pawn(const Pawn&);
     Pawn & operator=(const Pawn&);

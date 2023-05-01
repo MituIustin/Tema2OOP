@@ -10,6 +10,8 @@ Piece::Piece() {
     alive = true;
     row = 9;
     col = 9;
+    number_of_pieces++;
+    std::cout<<number_of_pieces<<" pieces have been created since the game started.\n";
 }
 
 Piece *Piece::clone() const {
@@ -24,6 +26,7 @@ bool Piece::move(int x1,int x2,int x3,int x4) {
 
 void Piece::set_sprite(sf::Sprite s) {
     sprite = s;
+    sprite.setPosition(row*100,col*100);
 }
 
 bool Piece::get_alive() {
@@ -49,17 +52,13 @@ sf::Sprite Piece::get_sprite() {
 void Piece::set_row_col(int x, int y) {
     col = x;
     row = y;
-    try {
-        if(x >=0 && x<=9 && y>=0 && y<=9) sprite.setPosition(row*100, col*100);
-        else throw NotValidXY();
-    }
-    catch (const Exception& e) {
-        std::cout<<"Error: "<<e.what();
-    }
+    if(x >=0 && x<=9 && y>=0 && y<=9) sprite.setPosition(row*100, col*100);
+    else throw NotValidXY();
 }
 
 
 Piece::~Piece() {
     std::cout<<"Destructor Piece\n";
+    number_of_pieces--;
 }
 //CLASA ABSTRACTA

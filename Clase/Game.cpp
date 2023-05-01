@@ -12,46 +12,17 @@ Game::Game(const Game &other) :
 white_squares (other.white_squares),
 board(other.board),
 first_player(other.first_player),
-second_player(other.second_player),
-white_rook_1 ( other.white_rook_1),
-white_rook_2 ( other.white_rook_2),
-black_rook_1 ( other.black_rook_1),
-black_rook_2 ( other.black_rook_2),
-white_knight_1 (other.white_knight_1),
-white_knight_2 (other.white_knight_2),
-black_knight_1 (other.black_knight_1),
-black_knight_2 (other.black_knight_2),
-white_bishop_1 ( other.white_bishop_1),
-white_bishop_2 ( other.white_bishop_2),
-black_bishop_1 ( other.black_bishop_1),
-black_bishop_2 ( other.black_bishop_2),
-white_king ( other.white_king),
-black_king ( other.black_king),
-white_queen ( other.white_queen),
-black_queen ( other.black_queen),
-white_pawn_1 ( other.white_pawn_1),
-white_pawn_2 ( other.white_pawn_2),
-white_pawn_3 ( other.white_pawn_3),
-white_pawn_4 ( other.white_pawn_4),
-white_pawn_5 ( other.white_pawn_5),
-white_pawn_6 ( other.white_pawn_6),
-white_pawn_7 ( other.white_pawn_7),
-white_pawn_8 ( other.white_pawn_8),
-black_pawn_1 ( other.black_pawn_1),
-black_pawn_2 ( other.black_pawn_2),
-black_pawn_3 ( other.black_pawn_3),
-black_pawn_4 ( other.black_pawn_4),
-black_pawn_5 ( other.black_pawn_5),
-black_pawn_6 ( other.black_pawn_6),
-black_pawn_7 ( other.black_pawn_7),
-black_pawn_8 ( other.black_pawn_8)
+second_player(other.second_player)
 {
-    std::cout<<"Constructor Game de copiere\n";
-
+    pieces.clear();
+    for( long long unsigned int i=0; i<other.pieces.size(); i++)
+    {
+        Piece * piece_clone = other.pieces[i]->clone();
+        pieces.emplace_back(piece_clone);
+    }
 }
 
 void Game::create_white_squares() {
-    try {
         for(int i=0; i<800; i+=100)
         {
             for(int j=0; j<800; j+=100)
@@ -69,211 +40,20 @@ void Game::create_white_squares() {
                 }
             }
         }
-    }
-    catch (const Exception& e) {
-        std::cout<<"Error: "<<e.what();
-    }
 }
 
-void Game::move_pieces() {
-
-    black_king.set_row_col(0, 4);
-    white_king.set_row_col(7, 4);
-
-    pieces.emplace_back(std::make_shared<King>(white_king));
-    pieces[pieces.size()-1]->set_row_col(7,4);
-    pieces[pieces.size()-1]->set_sprite(white_king.get_sprite());
-
-    pieces.emplace_back(std::make_shared<King>(black_king));
-    pieces[pieces.size()-1]->set_row_col(0,4);
-    pieces[pieces.size()-1]->set_sprite(black_king.get_sprite());
-
-    white_queen.set_row_col(7, 3);
-    black_queen.set_row_col(0,3);
-
-    pieces.emplace_back(std::make_shared<Queen>(white_queen));
-    pieces[pieces.size()-1]->set_row_col(7,3);
-    pieces[pieces.size()-1]->set_sprite(white_queen.get_sprite());
-
-    pieces.emplace_back(std::make_shared<Queen>(black_queen));
-    pieces[pieces.size()-1]->set_row_col(0,3);
-    pieces[pieces.size()-1]->set_sprite(black_queen.get_sprite());
-
-    white_rook_1.set_row_col(7,0);
-    pieces.emplace_back(std::make_shared<Rook>(white_rook_1));
-    pieces[pieces.size()-1]->set_row_col(7,0);
-    pieces[pieces.size()-1]->set_sprite(white_rook_1.get_sprite());
-
-    white_rook_2.set_row_col(7,7);
-    pieces.emplace_back(std::make_shared<Rook>(white_rook_2));
-    pieces[pieces.size()-1]->set_row_col(7,7);
-    pieces[pieces.size()-1]->set_sprite(white_rook_2.get_sprite());
-
-
-    black_rook_1.set_row_col(0,0);
-    pieces.emplace_back(std::make_shared<Rook>(black_rook_1));
-    pieces[pieces.size()-1]->set_row_col(0,0);
-    pieces[pieces.size()-1]->set_sprite(black_rook_1.get_sprite());
-
-
-    black_rook_2.set_row_col(0,7);
-    pieces.emplace_back(std::make_shared<Rook>(black_rook_2));
-    pieces[pieces.size()-1]->set_row_col(0,7);
-    pieces[pieces.size()-1]->set_sprite(black_rook_2.get_sprite());
-
-    white_knight_1.set_row_col(7,1);
-    pieces.emplace_back(std::make_shared<Knight>(white_knight_1));
-    pieces[pieces.size()-1]->set_row_col(7,1);
-    pieces[pieces.size()-1]->set_sprite(white_knight_1.get_sprite());
-
-    white_knight_2.set_row_col(7,6);
-    pieces.emplace_back(std::make_shared<Knight>(white_knight_2));
-    pieces[pieces.size()-1]->set_row_col(7,6);
-    pieces[pieces.size()-1]->set_sprite(white_knight_2.get_sprite());
-
-
-    black_knight_1.set_row_col(0,1);
-    pieces.emplace_back(std::make_shared<Knight>(black_knight_1));
-    pieces[pieces.size()-1]->set_row_col(0,1);
-    pieces[pieces.size()-1]->set_sprite(black_knight_1.get_sprite());
-
-
-    black_knight_2.set_row_col(0,6);
-    pieces.emplace_back(std::make_shared<Knight>(black_knight_2));
-    pieces[pieces.size()-1]->set_row_col(0,6);
-    pieces[pieces.size()-1]->set_sprite(black_knight_2.get_sprite());
-
-
-    white_bishop_1.set_row_col(7,2);
-    pieces.emplace_back(std::make_shared<Bishop>(white_bishop_1));
-    pieces[pieces.size()-1]->set_row_col(7,2);
-    pieces[pieces.size()-1]->set_sprite(white_bishop_1.get_sprite());
-
-
-    white_bishop_2.set_row_col(7,5);
-    pieces.emplace_back(std::make_shared<Bishop>(white_bishop_2));
-    pieces[pieces.size()-1]->set_row_col(7,5);
-    pieces[pieces.size()-1]->set_sprite(white_bishop_2.get_sprite());
-
-
-    black_bishop_1.set_row_col(0,2);
-    pieces.emplace_back(std::make_shared<Bishop>(black_bishop_1));
-    pieces[pieces.size()-1]->set_row_col(0,2);
-    pieces[pieces.size()-1]->set_sprite(black_bishop_1.get_sprite());
-
-
-    black_bishop_2.set_row_col(0,5);
-    pieces.emplace_back(std::make_shared<Bishop>(black_bishop_2));
-    pieces[pieces.size()-1]->set_row_col(0,5);
-    pieces[pieces.size()-1]->set_sprite(black_bishop_2.get_sprite());
-
-
-    white_pawn_1.set_row_col(6,0);
-    pieces.emplace_back(std::make_shared<Pawn>(white_pawn_1));
-    pieces[pieces.size()-1]->set_row_col(6,0);
-    pieces[pieces.size()-1]->set_sprite(white_pawn_1.get_sprite());
-
-
-    white_pawn_2.set_row_col(6,1);
-    pieces.emplace_back(std::make_shared<Pawn>(white_pawn_2));
-    pieces[pieces.size()-1]->set_row_col(6,1);
-    pieces[pieces.size()-1]->set_sprite(white_pawn_2.get_sprite());
-
-
-    white_pawn_3.set_row_col(6,2);
-    pieces.emplace_back(std::make_shared<Pawn>(white_pawn_3));
-    pieces[pieces.size()-1]->set_row_col(6,2);
-    pieces[pieces.size()-1]->set_sprite(white_pawn_3.get_sprite());
-
-
-    white_pawn_4.set_row_col(6,3);
-    pieces.emplace_back(std::make_shared<Pawn>(white_pawn_4));
-    pieces[pieces.size()-1]->set_row_col(6,3);
-    pieces[pieces.size()-1]->set_sprite(white_pawn_4.get_sprite());
-
-
-    white_pawn_5.set_row_col(6,4);
-    pieces.emplace_back(std::make_shared<Pawn>(white_pawn_5));
-    pieces[pieces.size()-1]->set_row_col(6,4);
-    pieces[pieces.size()-1]->set_sprite(white_pawn_5.get_sprite());
-
-
-    white_pawn_6.set_row_col(6,5);
-    pieces.emplace_back(std::make_shared<Pawn>(white_pawn_6));
-    pieces[pieces.size()-1]->set_row_col(6,5);
-    pieces[pieces.size()-1]->set_sprite(white_pawn_6.get_sprite());
-
-
-    white_pawn_7.set_row_col(6,6);
-    pieces.emplace_back(std::make_shared<Pawn>(white_pawn_7));
-    pieces[pieces.size()-1]->set_row_col(6,6);
-    pieces[pieces.size()-1]->set_sprite(white_pawn_7.get_sprite());
-
-
-    white_pawn_8.set_row_col(6,7);
-    pieces.emplace_back(std::make_shared<Pawn>(white_pawn_8));
-    pieces[pieces.size()-1]->set_row_col(6,7);
-    pieces[pieces.size()-1]->set_sprite(white_pawn_8.get_sprite());
-
-
-    black_pawn_1.set_row_col(1,0);
-    pieces.emplace_back(std::make_shared<Pawn>(black_pawn_1));
-    pieces[pieces.size()-1]->set_row_col(1,0);
-    pieces[pieces.size()-1]->set_sprite(black_pawn_1.get_sprite());
-
-
-    black_pawn_2.set_row_col(1,1);
-    pieces.emplace_back(std::make_shared<Pawn>(black_pawn_2));
-    pieces[pieces.size()-1]->set_row_col(1,1);
-    pieces[pieces.size()-1]->set_sprite(black_pawn_2.get_sprite());
-
-
-    black_pawn_3.set_row_col(1,2);
-    pieces.emplace_back(std::make_shared<Pawn>(black_pawn_3));
-    pieces[pieces.size()-1]->set_row_col(1,2);
-    pieces[pieces.size()-1]->set_sprite(black_pawn_3.get_sprite());
-
-
-    black_pawn_4.set_row_col(1,3);
-    pieces.emplace_back(std::make_shared<Pawn>(black_pawn_4));
-    pieces[pieces.size()-1]->set_row_col(1,3);
-    pieces[pieces.size()-1]->set_sprite(black_pawn_4.get_sprite());
-
-
-    black_pawn_5.set_row_col(1,4);
-    pieces.emplace_back(std::make_shared<Pawn>(black_pawn_5));
-    pieces[pieces.size()-1]->set_row_col(1,4);
-    pieces[pieces.size()-1]->set_sprite(black_pawn_5.get_sprite());
-
-
-    black_pawn_6.set_row_col(1,5);
-    pieces.emplace_back(std::make_shared<Pawn>(black_pawn_6));
-    pieces[pieces.size()-1]->set_row_col(1,5);
-    pieces[pieces.size()-1]->set_sprite(black_pawn_6.get_sprite());
-
-
-    black_pawn_7.set_row_col(1,6);
-    pieces.emplace_back(std::make_shared<Pawn>(black_pawn_7));
-    pieces[pieces.size()-1]->set_row_col(1,6);
-    pieces[pieces.size()-1]->set_sprite(black_pawn_7.get_sprite());
-
-
-    black_pawn_8.set_row_col(1,7);
-    pieces.emplace_back(std::make_shared<Pawn>(black_pawn_8));
-    pieces[pieces.size()-1]->set_row_col(1,7);
-    pieces[pieces.size()-1]->set_sprite(black_pawn_8.get_sprite());
-
-
+std::vector<std::shared_ptr<Piece>> & Game::get_pieces() {
+    return pieces;
 }
 
 void Game::is_emp(int y, int x) {
 
-    for(long unsigned int i = 0; i<pieces.size(); i++)
+    for(long unsigned int i = 0; i<get_pieces().size(); i++)
     {
-        if(pieces[i]->get_row() == x && pieces[i]->get_col() == y)
+        if(get_pieces()[i]->get_row() == x && get_pieces()[i]->get_col() == y)
         {
-            pieces[i]->set_row_col(9,9);
-            pieces[i]->set_alive(false);
+            get_pieces()[i]->set_row_col(9,9);
+            get_pieces()[i]->set_alive(false);
 
         }
 
@@ -284,100 +64,229 @@ void Game::finish(int c1, int c2, int c3, int c4) {
     std::cout<<"Piesa mutata de la ( "<<c4<<" , "<<c3<<" ) la ( "<<c2<<" , "<<c1<<" ). \n";
 }
 
+
+void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprite>& sprites) {
+    int cnt = 0;
+        if(!textures[cnt].loadFromFile("Texturi/whiteking.png", sf::IntRect(0, 0, 188, 309))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 188), float(100.0 / 309));
+        pieces.emplace_back(std::make_shared<King>());
+        pieces[cnt]->set_row_col(7, 4);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/blackking.png", sf::IntRect(0, 0, 196, 306))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 196), float(100.0 / 306));
+        pieces.emplace_back(std::make_shared<King>());
+        pieces[cnt]->set_row_col(0, 4);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/whitequeen.png", sf::IntRect(0, 0, 184, 286))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 184), float(100.0 / 286));
+        pieces.emplace_back(std::make_shared<Queen>());
+        pieces[cnt]->set_row_col(7, 3);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/blackqueen.png", sf::IntRect(0, 0, 182, 276))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 182), float(100.0 / 276));
+        pieces.emplace_back(std::make_shared<Queen>());
+        pieces[cnt]->set_row_col(0, 3);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/whitebishop.png", sf::IntRect(0, 0, 163, 275))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 163), float(100.0 / 275));
+        pieces.emplace_back(std::make_shared<Bishop>());
+        pieces[cnt]->set_row_col(7, 2);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/whitebishop.png", sf::IntRect(0, 0, 163, 275))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 163), float(100.0 / 275));
+        pieces.emplace_back(std::make_shared<Bishop>());
+        pieces[cnt]->set_row_col(7, 5);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/blackbishop.png", sf::IntRect(0, 0, 178, 272))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 178), float(100.0 / 272));
+        pieces.emplace_back(std::make_shared<Bishop>());
+        pieces[cnt]->set_row_col(0, 2);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/blackbishop.png", sf::IntRect(0, 0, 178, 272))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 178), float(100.0 / 272));
+        pieces.emplace_back(std::make_shared<Bishop>());
+        pieces[cnt]->set_row_col(0, 5);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/whiteknight.png", sf::IntRect(0, 0, 183, 295))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 183), float(100.0 / 295));
+        pieces.emplace_back(std::make_shared<Knight>());
+        pieces[cnt]->set_row_col(7, 1);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/whiteknight.png", sf::IntRect(0, 0, 183, 295))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 183), float(100.0 / 295));
+        pieces.emplace_back(std::make_shared<Knight>());
+        pieces[cnt]->set_row_col(7, 6);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/blackknight.png", sf::IntRect(0, 0, 195, 279))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 195), float(100.0 / 279));
+        pieces.emplace_back(std::make_shared<Knight>());
+        pieces[cnt]->set_row_col(0, 1);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/blackknight.png", sf::IntRect(0, 0, 195, 279))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 195), float(100.0 / 279));
+        pieces.emplace_back(std::make_shared<Knight>());
+        pieces[cnt]->set_row_col(0, 6);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/whiterook.png", sf::IntRect(0, 0, 182, 260))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 182), float(100.0 / 260));
+        pieces.emplace_back(std::make_shared<Rook>());
+        pieces[cnt]->set_row_col(7, 0);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/whiterook.png", sf::IntRect(0, 0, 182, 260))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 182), float(100.0 / 260));
+        pieces.emplace_back(std::make_shared<Rook>());
+        pieces[cnt]->set_row_col(7, 7);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/blackrook.png", sf::IntRect(0, 0, 162, 263))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 182), float(100.0 / 263));
+        pieces.emplace_back(std::make_shared<Rook>());
+        pieces[cnt]->set_row_col(0, 0);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+        if(!textures[cnt].loadFromFile("Texturi/blackrook.png", sf::IntRect(0, 0, 162, 263))) throw NoTexture();
+        sprites[cnt].setTexture(textures[cnt]);
+        sprites[cnt].setScale(float(100.0 / 182), float(100.0 / 263));
+        pieces.emplace_back(std::make_shared<Rook>());
+        pieces[cnt]->set_row_col(0, 7);
+        pieces[cnt]->set_sprite(sprites[cnt]);
+        cnt++;
+
+        for (int i = 0; i < 8; i++) {
+            if(!textures[cnt].loadFromFile("Texturi/whitepawn.png", sf::IntRect(0, 0, 171, 242))) throw NoTexture();
+            sprites[cnt].setTexture(textures[cnt]);
+            sprites[cnt].setScale(float(100.0 / 171), float(100.0 / 242));
+            pieces.emplace_back(std::make_shared<Pawn>());
+            pieces[cnt]->set_row_col(6, i);
+            pieces[cnt]->set_sprite(sprites[cnt]);
+            cnt++;
+        }
+
+        for (int i = 0; i < 8; i++) {
+            if(!textures[cnt].loadFromFile("Texturi/blackpawn.png", sf::IntRect(0, 0, 172, 232))) throw NoTexture();
+            sprites[cnt].setTexture(textures[cnt]);
+            sprites[cnt].setScale(float(100.0 / 172), float(100.0 / 232));
+            pieces.emplace_back(std::make_shared<Pawn>());
+            pieces[cnt]->set_row_col(1, i);
+            pieces[cnt]->set_sprite(sprites[cnt]);
+            cnt++;
+        }
+}
+
 void Game::start_game() {
 
-    // testing clone constructors
 
-    Rook r;
-    Knight k;
-    Bishop b;
-    King kg;
-    Queen q;
-    Pawn pa;
-    r.clone();
-    k.clone();
-    b.clone();
-    kg.clone();
-    q.clone();
-    pa.clone();
 
-    move_pieces();
-
-    sf::RenderWindow window(sf::VideoMode(800, 800), "Chess ");
-    window.setVerticalSyncEnabled(true);
-
-    create_white_squares();
-
+        std::vector<sf::Texture> textures;
+        std::vector<sf::Sprite> sprites;
     try {
-        if(!window.isOpen()) throw WindowNotOpened();
+
+        for (int i = 1; i <= 32; i++) {
+            sf::Texture texture;
+            sf::Sprite sprite;
+            textures.push_back(texture);
+            sprites.push_back(sprite);
+        }
+
+        move_pieces(textures, sprites);
     }
-    catch (const Exception& e) {
-        std::cout<<"Error: "<<e.what();
+    catch (const Exception &e) {
+        std::cout << "Error: " << e.what();
     }
 
-    int c1=0,c2=0,c3,c4;
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
+        sf::RenderWindow window(sf::VideoMode(800, 800), "Chess ");
+        window.setVerticalSyncEnabled(true);
 
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
-                if (event.mouseButton.button == sf::Mouse::Left)
-                {
-                    if(c1 == 0 && c2 == 0)
-                    {
-                        c1 = event.mouseButton.x/100;
-                        c2 = event.mouseButton.y/100;
-                    }
-                    else
-                    {
-                        c3 = c1;
-                        c4 = c2;
-                        c1 = event.mouseButton.x/100;
-                        c2 = event.mouseButton.y/100;
+        create_white_squares();
 
-                        try {
-                            bool moved = false;
-                            for (long unsigned int i = 0; i<pieces.size(); i++)
-                            {
-                                if(pieces[i]->move(c4,c3,c2,c1) && pieces[i]->get_row() == c3 && pieces[i]->get_col() == c4)
-                                {
-                                    is_emp(c2,c1);
-                                    pieces[i]->set_row_col(c2,c1);
-                                    finish(c1,c2,c3,c4);
-                                    moved = true;
+        if (!window.isOpen()) throw WindowNotOpened();
+
+        int c1 = 0, c2 = 0, c3, c4;
+
+        while (window.isOpen()) {
+            sf::Event event;
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                }
+
+                if (event.type == sf::Event::MouseButtonPressed) {
+                    if (event.mouseButton.button == sf::Mouse::Left) {
+                        if (c1 == 0 && c2 == 0) {
+                            c1 = event.mouseButton.x / 100;
+                            c2 = event.mouseButton.y / 100;
+                        } else {
+                            c3 = c1;
+                            c4 = c2;
+                            c1 = event.mouseButton.x / 100;
+                            c2 = event.mouseButton.y / 100;
+
+                            try {
+                                bool moved = false;
+                                if(get_pieces().size()<=0) throw NoPieces();
+                                if(c1==c3 && c2==c4) throw NotValidMove();
+                                else {
+                                    for (long unsigned int i = 0; i < get_pieces().size(); i++) {
+                                        if (get_pieces()[i]->move(c4, c3, c2, c1) && get_pieces()[i]->get_row() == c3 &&
+                                            get_pieces()[i]->get_col() == c4) {
+                                            is_emp(c2, c1);
+                                            get_pieces()[i]->set_row_col(c2, c1);
+                                            finish(c1, c2, c3, c4);
+                                            moved = true;
+                                        }
+                                    }
+                                    if (moved == false) throw NotValidMove();
                                 }
                             }
-                            if(moved == false) throw NotValidMove();
-                        }
-                        catch (const Exception& e)
-                        {
-                            std::cout<<"Error: "<<e.what();
-                        }
-                        c1 = 0;
-                        c2 = 0;
+                            catch (const Exception &e) {
+                                std::cout << "Error: " << e.what();
+                            }
+                            c1 = 0;
+                            c2 = 0;
 
+                        }
                     }
                 }
+
+                window.clear(sf::Color::Black);
+
+                for (auto square: white_squares) window.draw(square);
+
+                for (long unsigned int i = 0; i < get_pieces().size(); i++) {
+                    if (get_pieces()[i]->get_alive()) window.draw(get_pieces()[i]->get_sprite());
+                }
+
+                window.display();
             }
-
-            window.clear(sf::Color::Black);
-
-            for (auto square : white_squares) window.draw(square);
-
-            for (long unsigned int i =0; i<pieces.size(); i++)
-            {
-                if(pieces[i]->get_alive()) window.draw(pieces[i]->get_sprite());
-            }
-
-            window.display();
         }
-    }
+
 }

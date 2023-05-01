@@ -9,7 +9,6 @@ private:
     std::string name;
 public:
     Knight();
-    explicit Knight(int);
     Knight * clone() const override;
     Knight(const Knight&);
     Knight& operator=(const Knight&);

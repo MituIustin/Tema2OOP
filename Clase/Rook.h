@@ -9,7 +9,6 @@ private:
     std::string name;
 public:
     Rook();
-    explicit Rook(int);
     Rook * clone() const override;
     Rook (const Rook&);
     Rook & operator=(const Rook &);

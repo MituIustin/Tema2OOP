@@ -12,40 +12,6 @@ Knight *Knight::clone() const {
     return new Knight(*this);
 }
 
-Knight::Knight(int x) : name("knight"){
-    alive = true;
-    if(x==0)
-    {
-        try {
-            if(!texture.loadFromFile("Texturi/whiteknight.png", sf::IntRect(0,0,183,295)))
-                throw NoTexture();
-
-        }
-        catch (const Exception & e)
-        {
-            std::cout<<"Error: "<<e.what();
-        }
-        sprite.setTexture(texture);
-        sprite.setScale(float(100.0/183), float(100.0/295));
-    }
-    else
-    {
-        try {
-            if(!texture.loadFromFile("Texturi/blackknight.png", sf::IntRect(0,0,195,279)))
-                throw NoTexture();
-        }
-        catch (const Exception & e)
-        {
-            std::cout<<"Error: "<<e.what();
-        }
-        sprite.setTexture(texture);
-        sprite.setScale(float(100.0/195), float(100.0/279));
-
-    }
-    number_of_pieces++;
-    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
-}
-
 Knight::Knight(const Knight & other) : name(other.name){
     std::cout<<"CC Knight\n";
     alive = other.alive;

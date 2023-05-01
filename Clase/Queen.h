@@ -9,7 +9,6 @@ private:
     std::string name;
 public:
     Queen();
-    explicit Queen(int);
     Queen * clone() const override;
     Queen(const Queen&);
     Queen & operator=(const Queen&);

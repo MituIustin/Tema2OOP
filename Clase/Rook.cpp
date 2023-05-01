@@ -12,32 +12,6 @@ Rook *Rook::clone() const {
     return new Rook(*this);
 }
 
-Rook::Rook(int x) : name("rook") {
-    alive = true;
-    try {
-        if(x==0)
-        {
-            if (!texture.loadFromFile("Texturi/whiterook.png", sf::IntRect(0,0,182,260)))
-                throw NoTexture();
-            sprite.setTexture(texture);
-            sprite.setScale(float(100.0/212), float(100.0/290));
-        }
-        else
-        {
-            if (!texture.loadFromFile("Texturi/blackrook.png", sf::IntRect(0,0,196,306)))
-                throw NoTexture();
-            sprite.setTexture(texture);
-            sprite.setScale(float(100.0/196), float(100.0/306));
-
-        }
-    }
-    catch (const Exception & e)
-    {
-        std::cout<<"Error: "<<e.what();
-    }
-    number_of_pieces++;
-    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
-}
 
 bool Rook::move(int x1, int y1, int x2, int y2) {
     bool var = true;

@@ -7,6 +7,7 @@
 class Piece {
 private:
     int row,col;
+    static int number_of_pieces;
 public:
     Piece();
     virtual Piece * clone() const = 0;
@@ -20,7 +21,6 @@ public:
     void set_sprite(sf::Sprite);
     sf::Sprite get_sprite();
 protected:
-    static int number_of_pieces;
     bool alive;
     sf::Texture texture;
     sf::Sprite sprite;

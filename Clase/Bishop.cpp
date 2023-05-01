@@ -13,37 +13,6 @@ Bishop *Bishop::clone() const {
     return new Bishop(*this);
 }
 
-Bishop::Bishop(int x) : name("bishop"){
-    alive = true;
-    if(x==0)
-    {
-        try {
-            if(!texture.loadFromFile("Texturi/whitebishop.png", sf::IntRect(0,0,163,275)))
-                throw NoTexture();
-        }
-        catch (const Exception& e) {
-            std::cout << "Error: " << e.what();
-        }
-        sprite.setTexture(texture);
-        sprite.setScale( float(100.0/163), float(100.0/275));
-    }
-    else
-    {
-        try {
-            if(!texture.loadFromFile("Texturi/blackbishop.png", sf::IntRect(0,0,178,272)))
-                throw NoTexture();
-        }
-        catch (const Exception& e) {
-            std::cout<<"Error: "<<e.what();
-        }
-        sprite.setTexture(texture);
-        sprite.setScale(float(100.0/178), float(100.0/272));
-
-    }
-    number_of_pieces++;
-    std::cout<<"Number of pieces created  = "<<number_of_pieces<<"\n";
-}
-
 Bishop::Bishop(const Bishop & other) : name(other.name) {
     std::cout<<"CC Bishop\n";
     alive = other.alive;
