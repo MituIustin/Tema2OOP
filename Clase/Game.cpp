@@ -252,7 +252,7 @@ void Game::start_game() {
 
                             try {
 
-                                if(get_pieces().size()<=0) throw NoPieces();
+                                if(get_pieces().size()==0) throw NoPieces();
                                 else {
                                     bool ok = false;
                                     for (long unsigned int i = 0; i < get_pieces().size(); i++) {
