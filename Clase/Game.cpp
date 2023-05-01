@@ -251,20 +251,21 @@ void Game::start_game() {
                             c2 = event.mouseButton.y / 100;
 
                             try {
-                                bool moved = false;
+
                                 if(get_pieces().size()<=0) throw NoPieces();
-                                if(c1==c3 && c2==c4) throw NotValidMove();
                                 else {
+                                    bool ok = false;
                                     for (long unsigned int i = 0; i < get_pieces().size(); i++) {
-                                        if (get_pieces()[i]->move(c4, c3, c2, c1) && get_pieces()[i]->get_row() == c3 &&
-                                            get_pieces()[i]->get_col() == c4) {
+                                        if (get_pieces()[i]->move(c4, c3, c2, c1) && get_pieces()[i]->get_row() == c3 && get_pieces()[i]->get_col() == c4 && ! (c1==c3 && c2==c4))
+                                        {
                                             is_emp(c2, c1);
                                             get_pieces()[i]->set_row_col(c2, c1);
                                             finish(c1, c2, c3, c4);
-                                            moved = true;
+                                            ok = true;
                                         }
                                     }
-                                    if (moved == false) throw NotValidMove();
+                                    if(ok == false) throw NotValidMove();
+
                                 }
                             }
                             catch (const Exception &e) {
