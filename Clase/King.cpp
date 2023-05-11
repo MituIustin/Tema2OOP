@@ -25,6 +25,7 @@ King &King::operator=(const King & other) {
 }
 
 bool King::move(int x1, int y1, int x2, int y2) {
+    if (x1==x2 && y1==y2) return false;
     if(abs(x1-x2)<=1 && abs(y1-y2)<=1) return true;
     return false;
 }

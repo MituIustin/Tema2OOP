@@ -33,11 +33,6 @@ public:
     WindowNotOpened() : Exception("The window could not be opened. \n") {}
 };
 
-class ClassNotUsed : public Exception {
-public:
-    ClassNotUsed() : Exception("This class is never used ") {}
-};
-
 class NoPieces : public Exception {
 public:
     NoPieces() : Exception("There is no piece created / All pieces have been deleted . \n") {}

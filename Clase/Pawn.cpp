@@ -14,6 +14,7 @@ Pawn *Pawn::clone() const {
 }
 
 bool Pawn::move(int x1, int x2, int y1, int y2) {
+    if (x1==y1 && x2==y2) return false;
     if(x2==y2 && abs(x1-y1)<=2) return true;
     return false;
 }

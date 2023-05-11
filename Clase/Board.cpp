@@ -3,14 +3,8 @@
 #include <iostream>
 
 Board::Board() {
-    try {
-        std::cout<<"Constructor Board\n";
-        throw ClassNotUsed();
-    }
-    catch (const Exception& e) {
-        std::cout<<"This class will be implemented in 'Tema 3 POO' ( "<<e.what()<<" ) .\n";
-    }
-
+    std::cout<<"Constructor Board\n";
+    std::cout<<"This class will be implemented in 'Tema 3 POO'. \n";
 }
 
 Board::~Board() {

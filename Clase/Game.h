@@ -14,6 +14,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <string>
 
 class Game {
 private:
@@ -27,6 +28,7 @@ private:
     void move_pieces(std::vector<sf::Texture>&, std::vector<sf::Sprite>& );
 
     void is_emp(int,int);
+    void create_piece(std::vector<sf::Texture>&, std::vector<sf::Sprite>&,std::string,int,int,int,int,int,int,int&,int);
 
     static void finish(int, int ,int ,int );
 
@@ -34,6 +36,7 @@ public:
     Game();
     std::vector<std::shared_ptr<Piece>> & get_pieces();
     Game(const Game &other);
+    Game & operator=(const Game&);
     void start_game();
 };
 
