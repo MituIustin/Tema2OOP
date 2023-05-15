@@ -16,8 +16,12 @@ Contine:
 - SFML ✔
 - Metode / Atribute statice ✔
 - Ierarhie de exeptii ✔
+- Dynamic Cast ✔
 
 Ce mai trebuie implementat:
 
-- Dynamic Cast 
 - Adaugarea tuturor regulilor de sah (Tema 3)
+
+
+Texturile au fost luate de aici:
+https://opengameart.org/content/chess-pieces-and-board-squares
