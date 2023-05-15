@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <memory>
 
 class Piece {
 private:
@@ -10,7 +11,7 @@ private:
     static int number_of_pieces;
 public:
     Piece();
-    virtual Piece * clone() const = 0;
+    virtual std::shared_ptr<Piece> clone() const = 0;
     virtual ~Piece();
     virtual bool move(int,int,int,int) =0;
     void set_row_col(int, int);

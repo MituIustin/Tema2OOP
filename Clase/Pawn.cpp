@@ -1,16 +1,16 @@
 #include "Pawn.h"
-#include "Exception.h"
 #include <iostream>
 #include <cmath>
+#include <memory>
 
 Pawn::Pawn() : name("pawn"){
     std::cout<<"Constructor Pawn\n";
     alive = true;
 }
 
-Pawn *Pawn::clone() const {
+std::shared_ptr<Piece> Pawn::clone() const {
     std::cout<<"Constructor Clone Pawn\n";
-    return new Pawn(*this);
+    return std::make_shared<Pawn>( Pawn(*this) );
 }
 
 bool Pawn::move(int x1, int x2, int y1, int y2) {

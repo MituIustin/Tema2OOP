@@ -3,13 +3,14 @@
 
 #include "Piece.h"
 #include <string>
+#include <memory>
 
 class Queen : public  Piece{
 private:
     std::string name;
 public:
     Queen();
-    Queen * clone() const override;
+    std::shared_ptr<Piece> clone() const override;
     Queen(const Queen&);
     Queen & operator=(const Queen&);
     bool move(int,int,int,int) override;

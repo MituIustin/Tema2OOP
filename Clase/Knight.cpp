@@ -1,15 +1,15 @@
 #include "Knight.h"
-#include "Exception.h"
 #include <iostream>
+#include <memory>
 
 Knight::Knight(): name("knight") {
     std::cout<<"Constructor Knight\n";
     alive = true;
 }
 
-Knight *Knight::clone() const {
+std::shared_ptr<Piece> Knight::clone() const {
     std::cout<<"Constructor Clone Knight\n";
-    return new Knight(*this);
+    return std::make_shared<Knight>(Knight(*this));
 }
 
 Knight::Knight(const Knight & other) : name(other.name){

@@ -2,6 +2,7 @@
 #include "Exception.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 int Piece::number_of_pieces = 0;
 
@@ -14,7 +15,7 @@ Piece::Piece() {
     std::cout<<number_of_pieces<<" pieces have been created since the game started.\n";
 }
 
-Piece *Piece::clone() const {
+std::shared_ptr<Piece> Piece::clone() const {
     return nullptr;
 }
 
@@ -34,10 +35,12 @@ bool Piece::get_alive() {
 }
 
 int Piece::get_col() {
+    if(col<0 || col>7) throw NotValidPosition();
     return col;
 }
 
 int Piece::get_row() {
+    if(row<0 || row>7) throw NotValidPosition();
     return row;
 }
 

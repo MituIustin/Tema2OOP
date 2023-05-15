@@ -1,15 +1,16 @@
 #include "Rook.h"
 #include "Exception.h"
 #include <iostream>
+#include <memory>
 
 Rook::Rook() : name("rook") {
     std::cout<<"Constructor Rook\n";
     alive = true;
 }
 
-Rook *Rook::clone() const {
-    std::cout<<"Constructor Clone Rook\n";
-    return new Rook(*this);
+std::shared_ptr<Piece> Rook::clone() const {
+    std::cout << "Constructor Clone Rook\n";
+    return std::make_shared<Rook>(*this);
 }
 
 

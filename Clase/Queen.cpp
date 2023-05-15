@@ -8,9 +8,9 @@ Queen::Queen() : name("queen") {
     alive = true;
 }
 
-Queen *Queen::clone() const {
+std::shared_ptr<Piece> Queen::clone() const {
     std::cout<<"Constructor Clone Queen\n";
-    return new Queen(*this);
+    return std::make_shared<Queen>(Queen(*this));
 }
 
 bool Queen::move(int x1, int y1, int x2, int y2) {

@@ -8,9 +8,9 @@ King::King() : name("king"){
     alive = true;
 }
 
-King *King::clone() const {
+std::shared_ptr<Piece> King::clone() const {
     std::cout<<"Constructor Clone King\n";
-    return new King(*this);
+    return std::make_shared<King>(King(*this));
 }
 
 King::King(const King &other) : name(other.name) {

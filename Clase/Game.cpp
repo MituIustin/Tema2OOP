@@ -26,7 +26,7 @@ second_player(other.second_player)
     pieces.clear();
     for( long long unsigned int i=0; i<other.pieces.size(); i++)
     {
-        Piece * piece_clone = other.pieces[i]->clone();
+        std::shared_ptr<Piece> piece_clone = other.pieces[i]->clone();
         pieces.emplace_back(piece_clone);
     }
 }

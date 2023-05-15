@@ -38,4 +38,10 @@ public:
     NoPieces() : Exception("There is no piece created / All pieces have been deleted . \n") {}
 };
 
+class NotValidPosition : public Exception {
+public:
+    NotValidPosition() : Exception("The position of the chess piece is not valid \n") {}
+};
+
+
 #endif  // EXCEPTION_H

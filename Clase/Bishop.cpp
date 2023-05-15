@@ -2,15 +2,16 @@
 #include <iostream>
 #include <cmath>
 #include "Exception.h"
+#include <memory>
 
 Bishop::Bishop() : name("bishop"){
     std::cout<<"Constructor Bishop\n";
     alive = true;
 }
 
-Bishop *Bishop::clone() const {
+std::shared_ptr<Piece> Bishop::clone() const {
     std::cout<<"Constructor Clone Bishop\n";
-    return new Bishop(*this);
+    return std::make_shared<Bishop>(Bishop(*this));
 }
 
 Bishop::Bishop(const Bishop & other) : name(other.name) {
