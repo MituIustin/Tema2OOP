@@ -6,13 +6,9 @@
 #include <memory>
 
 class Pawn : public Piece {
-private:
-    std::string name;
 public:
     Pawn();
     std::shared_ptr<Piece> clone() const override;
-    Pawn(const Pawn&);
-    Pawn & operator=(const Pawn&);
     bool move(int,int,int,int) override;
     ~Pawn();
 };

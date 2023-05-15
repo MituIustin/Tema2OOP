@@ -3,25 +3,15 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
-King::King() : name("king"){
+King::King() {
     std::cout<<"Constructor King\n";
     alive = true;
+    name = "king";
 }
 
 std::shared_ptr<Piece> King::clone() const {
     std::cout<<"Constructor Clone King\n";
     return std::make_shared<King>(King(*this));
-}
-
-King::King(const King &other) : name(other.name) {
-    std::cout<<"CC King\n";
-    alive = other.alive;
-};
-
-King &King::operator=(const King & other) {
-    std::cout<<"OP= King\n";
-    alive = other.alive;
-    return *this;
 }
 
 bool King::move(int x1, int y1, int x2, int y2) {

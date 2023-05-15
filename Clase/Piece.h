@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <memory>
+#include <string>
 
 class Piece {
 private:
@@ -21,8 +22,11 @@ public:
     void set_alive(bool);
     void set_sprite(sf::Sprite);
     sf::Sprite get_sprite();
+    Piece(const Piece&);
+    Piece & operator=(const Piece&);
 protected:
     bool alive;
+    std::string name;
     sf::Texture texture;
     sf::Sprite sprite;
 };

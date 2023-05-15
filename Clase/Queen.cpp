@@ -3,9 +3,10 @@
 #include <iostream>
 #include <memory>
 
-Queen::Queen() : name("queen") {
+Queen::Queen()  {
     std::cout<<"Constructor Queen\n";
     alive = true;
+    name = "queen";
 }
 
 std::shared_ptr<Piece> Queen::clone() const {
@@ -19,18 +20,6 @@ bool Queen::move(int x1, int y1, int x2, int y2) {
     bool var = true;
     if(x1 != x2 && y1 != y2) var = false;
     return  var;
-}
-
-Queen::Queen(const Queen & other) :name(other.name) {
-    std::cout<<"CC Queen\n";
-    alive = other.alive;
-}
-
-Queen &Queen::operator=(const Queen & other) {
-    std::cout<<"OP= Queen\n";
-    alive = other.alive;
-    name = other.name;
-    return *this;
 }
 
 Queen::~Queen() {

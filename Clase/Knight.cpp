@@ -2,26 +2,15 @@
 #include <iostream>
 #include <memory>
 
-Knight::Knight(): name("knight") {
+Knight::Knight(){
     std::cout<<"Constructor Knight\n";
     alive = true;
+    name = "knight";
 }
 
 std::shared_ptr<Piece> Knight::clone() const {
     std::cout<<"Constructor Clone Knight\n";
     return std::make_shared<Knight>(Knight(*this));
-}
-
-Knight::Knight(const Knight & other) : name(other.name){
-    std::cout<<"CC Knight\n";
-    alive = other.alive;
-}
-
-Knight &Knight::operator=(const Knight & other) {
-    std::cout<<"OP= Knight\n";
-    alive = other.alive;
-    name = other.name;
-    return *this;
 }
 
 bool Knight::move(int x1, int y1, int x2, int y2) {

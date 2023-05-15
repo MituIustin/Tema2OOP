@@ -72,7 +72,7 @@ void Game::create_piece(sf::Texture& texture, sf::Sprite& sprite, std::string te
         throw NoTexture();
 
     sprite.setTexture(texture);
-    sprite.setScale(float(100.0 / x_final), float(100.0 / y_final));
+    sprite.setScale(100.0f / x_final, 100.0f / y_final);
 
     PieceType pieceType = static_cast<PieceType>(n_piece);
     auto it = pieceConstructors.find(pieceType);
@@ -89,9 +89,10 @@ std::vector<std::shared_ptr<Piece>> & Game::get_pieces() {
 
 void Game::is_emp(int y, int x) {
 
-    for(long unsigned int i = 0; i<get_pieces().size(); i++)
+    if ( y<0 || y>7 || x<0 || x>7) throw NotValidPosition();
+    for(long unsigned int i = 0; i<pieces.size(); i++)
     {
-        if(get_pieces()[i]->get_row() == x && get_pieces()[i]->get_col() == y)
+        if(pieces[i]->get_row() == x && pieces[i]->get_col() == y)
         {
             get_pieces()[i]->set_row_col(9,9);
             get_pieces()[i]->set_alive(false);

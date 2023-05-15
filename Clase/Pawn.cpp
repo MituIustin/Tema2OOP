@@ -3,9 +3,10 @@
 #include <cmath>
 #include <memory>
 
-Pawn::Pawn() : name("pawn"){
+Pawn::Pawn(){
     std::cout<<"Constructor Pawn\n";
     alive = true;
+    name = "pawn";
 }
 
 std::shared_ptr<Piece> Pawn::clone() const {
@@ -17,18 +18,6 @@ bool Pawn::move(int x1, int x2, int y1, int y2) {
     if (x1==y1 && x2==y2) return false;
     if(x2==y2 && abs(x1-y1)<=2) return true;
     return false;
-}
-
-Pawn::Pawn(const Pawn & other) : name(other.name) {
-    std::cout<<"CC Pawn\n";
-    alive = other.alive;
-}
-
-Pawn &Pawn::operator=(const Pawn & other) {
-    std::cout<<"OP= Pawn\n";
-    alive = other.alive;
-    name = other.name;
-    return *this;
 }
 
 Pawn::~Pawn() {

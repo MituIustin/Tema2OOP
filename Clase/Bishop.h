@@ -6,13 +6,9 @@
 #include <memory>
 
 class Bishop : public Piece{
-private:
-    std::string name;
 public:
     Bishop();
     std::shared_ptr<Piece> clone() const override;
-    Bishop(const Bishop&);
-    Bishop & operator=(const Bishop&);
     bool move(int,int,int,int) override;
     ~Bishop();
 };

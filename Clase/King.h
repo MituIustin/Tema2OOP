@@ -7,13 +7,9 @@
 #include <memory>
 
 class King : public Piece{
-private:
-    std::string name;
 public:
     King();
     std::shared_ptr<Piece> clone() const override;
-    King(const King&);
-    King & operator=(const King&);
     bool move(int,int,int,int) override;
     ~King();
 };
