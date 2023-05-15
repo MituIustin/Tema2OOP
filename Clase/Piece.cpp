@@ -17,8 +17,8 @@ Piece::Piece() {
 Piece::Piece(const Piece & other):
 row(other.row),
 col(other.col),
-name(other.name),
 alive(other.alive),
+name(other.name),
 texture(other.texture),
 sprite(other.sprite)
 {

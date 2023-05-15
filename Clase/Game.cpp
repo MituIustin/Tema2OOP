@@ -106,7 +106,6 @@ void Game::finish(int c1, int c2, int c3, int c4) {
 
 
 void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprite>& sprites) {
-    int cnt = 0;
     std::vector<int> poz_x;
     std::vector<int> poz_y;
     std::vector<std::string> tex;
