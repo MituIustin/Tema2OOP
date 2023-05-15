@@ -15,9 +15,21 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <string>
+#include <unordered_map>
+
+enum class PieceType {
+    ROOK,
+    KNIGHT,
+    BISHOP,
+    KING,
+    QUEEN,
+    PAWN,
+    COUNT
+};
 
 class Game {
 private:
+    std::unordered_map<PieceType, std::function<std::shared_ptr<Piece>()>> pieceConstructors;
     std::vector<std::shared_ptr<Piece>> pieces;
     std::vector <sf::Sprite> white_squares;
     Board board;
@@ -28,7 +40,7 @@ private:
     void move_pieces(std::vector<sf::Texture>&, std::vector<sf::Sprite>& );
 
     void is_emp(int,int);
-    void create_piece(std::vector<sf::Texture>&, std::vector<sf::Sprite>&,std::string,int,int,int,int,int,int,int&,int);
+    void create_piece(sf::Texture &, sf::Sprite &,std::string,int,int,int,int,int);
 
     static void finish(int, int ,int ,int );
 

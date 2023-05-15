@@ -6,9 +6,18 @@
 
 Game::Game() {
     std::cout<<"Constructor Game\n";
+    pieceConstructors = {
+            {PieceType::ROOK, []() { return std::make_shared<Rook>(); }},
+            {PieceType::KNIGHT, []() { return std::make_shared<Knight>(); }},
+            {PieceType::BISHOP, []() { return std::make_shared<Bishop>(); }},
+            {PieceType::KING, []() { return std::make_shared<King>(); }},
+            {PieceType::QUEEN, []() { return std::make_shared<Queen>(); }},
+            {PieceType::PAWN, []() { return std::make_shared<Pawn>(); }}
+    };
 }
 
 Game::Game(const Game &other) :
+pieceConstructors (other.pieceConstructors),
 white_squares (other.white_squares),
 board(other.board),
 first_player(other.first_player),
@@ -25,26 +34,12 @@ second_player(other.second_player)
 Game& Game::operator=(const Game& other) {
 
     pieces.clear();
+
     for (const auto& piece : other.pieces) {
-        if (const auto ptr_rook = std::dynamic_pointer_cast<Rook>(piece)) {
-            pieces.emplace_back(std::make_shared<Rook>(*ptr_rook));
-        }
-        if (const auto ptr_knight = std::dynamic_pointer_cast<Knight>(piece)) {
-            pieces.emplace_back(std::make_shared<Knight>(*ptr_knight));
-        }
-        if (const auto ptr_bishop = std::dynamic_pointer_cast<Bishop>(piece)) {
-            pieces.emplace_back(std::make_shared<Bishop>(*ptr_bishop));
-        }
-        if (const auto ptr_king = std::dynamic_pointer_cast<King>(piece)) {
-            pieces.emplace_back(std::make_shared<King>(*ptr_king));
-        }
-        if (const auto ptr_queen = std::dynamic_pointer_cast<Queen>(piece)) {
-            pieces.emplace_back(std::make_shared<Queen>(*ptr_queen));
-        }
-        if (const auto ptr_pawn = std::dynamic_pointer_cast<Pawn>(piece)) {
-            pieces.emplace_back(std::make_shared<Pawn>(*ptr_pawn));
-        }
+        pieces.emplace_back(piece->clone());
     }
+
+    pieceConstructors = other.pieceConstructors;
     white_squares = other.white_squares;
     board = other.board;
     first_player = other.first_player;
@@ -72,20 +67,21 @@ void Game::create_white_squares() {
         }
 }
 
-void Game::create_piece(std::vector<sf::Texture> & textures, std::vector<sf::Sprite> & sprites, std::string texture_name, int x_start, int y_start, int x_final, int y_final, int x, int y, int & cnt, int n_piece) {
-    if(!textures[cnt].loadFromFile(texture_name, sf::IntRect(x_start, y_start, x_final, y_final))) throw NoTexture();
-    sprites[cnt].setTexture(textures[cnt]);
-    sprites[cnt].setScale(float(100.0 / x_final), float(100.0 / y_final));
-    if(n_piece == 0) pieces.emplace_back(std::make_shared<Rook>());
-    if(n_piece == 1) pieces.emplace_back(std::make_shared<Knight>());
-    if(n_piece == 2) pieces.emplace_back(std::make_shared<Bishop>());
-    if(n_piece == 3) pieces.emplace_back(std::make_shared<King>());
-    if(n_piece == 4) pieces.emplace_back(std::make_shared<Queen>());
-    if(n_piece == 5) pieces.emplace_back(std::make_shared<Pawn>());
-    pieces[cnt]->set_row_col(x, y);
-    pieces[cnt]->set_sprite(sprites[cnt]);
-    cnt++;
+void Game::create_piece(sf::Texture& texture, sf::Sprite& sprite, std::string texture_name, int x_final, int y_final, int x, int y, int n_piece) {
+    if (!texture.loadFromFile(texture_name, sf::IntRect(0, 0, x_final, y_final)))
+        throw NoTexture();
+
+    sprite.setTexture(texture);
+    sprite.setScale(float(100.0 / x_final), float(100.0 / y_final));
+
+    PieceType pieceType = static_cast<PieceType>(n_piece);
+    auto it = pieceConstructors.find(pieceType);
+
+    pieces.emplace_back((it->second)());
+    pieces.back()->set_row_col(x, y);
+    pieces.back()->set_sprite(sprite);
 }
+
 
 std::vector<std::shared_ptr<Piece>> & Game::get_pieces() {
     return pieces;
@@ -114,10 +110,10 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
     std::vector<int> poz_y;
     std::vector<std::string> tex;
 
-    create_piece(textures,sprites,"Texturi/whiteking.png",0,0,188,309,7,4,cnt,3);
-    create_piece(textures,sprites,"Texturi/blackking.png",0,0,196,306,0,4,cnt,3);
-    create_piece(textures,sprites,"Texturi/whitequeen.png",0,0,184,286,7,3,cnt,4);
-    create_piece(textures,sprites,"Texturi/blackqueen.png",0,0,182,276,0,3,cnt,4);
+    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whiteking.png",188,309,7,4,3);
+    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackking.png",196,306,0,4,3);
+    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whitequeen.png",184,286,7,3,4);
+    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackqueen.png",182,276,0,3,4);
 
     poz_x.push_back(7); poz_x.push_back(7); poz_x.push_back(0); poz_x.push_back(0);
     poz_y.push_back(2); poz_y.push_back(5); poz_y.push_back(2); poz_y.push_back(5);
@@ -127,7 +123,7 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
 
     for(int i=0; i<4; i++)
     {
-        create_piece(textures,sprites,tex[i],0,0,170,275,poz_x[i],poz_y[i],cnt,2);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],170,275,poz_x[i],poz_y[i],2);
     }
 
     poz_y.clear();
@@ -139,7 +135,7 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
 
     for(int i=0; i<4; i++)
     {
-        create_piece(textures,sprites,tex[i],0,0,185,285,poz_x[i],poz_y[i],cnt,1);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],185,285,poz_x[i],poz_y[i],1);
     }
 
     poz_y.clear();
@@ -151,14 +147,14 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
 
     for(int i=0; i<4; i++)
     {
-        create_piece(textures,sprites,tex[i],0,0,172,260,poz_x[i],poz_y[i],cnt,0);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],172,260,poz_x[i],poz_y[i],0);
     }
 
     for (int i = 0; i < 8; i++) {
-        create_piece(textures,sprites,"Texturi/whitepawn.png",0,0,171,242,6,i,cnt,5);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whitepawn.png",171,242,6,i,5);
     }
     for (int i = 0; i < 8; i++) {
-        create_piece(textures,sprites,"Texturi/blackpawn.png",0,0,172,232,1,i,cnt,5);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackpawn.png",172,232,1,i,5);
     }
 }
 
