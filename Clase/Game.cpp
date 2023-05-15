@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 
 Game::Game()
         : pieceConstructors{

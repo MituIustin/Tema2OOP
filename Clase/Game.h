@@ -16,6 +16,7 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include <functional>
 
 enum class PieceType {
     ROOK,
@@ -23,8 +24,7 @@ enum class PieceType {
     BISHOP,
     KING,
     QUEEN,
-    PAWN,
-    COUNT
+    PAWN
 };
 
 class Game {
