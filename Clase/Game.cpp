@@ -80,7 +80,6 @@ void Game::create_piece(sf::Texture& texture, sf::Sprite& sprite, std::string te
     pieces.emplace_back((it->second)());
     pieces.back()->set_row_col(x, y);
     pieces.back()->set_sprite(sprite);
-    std::cout<<"\n";
 }
 
 
