@@ -4,16 +4,17 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-Game::Game() {
-    std::cout<<"Constructor Game\n";
-    pieceConstructors = {
-            {PieceType::ROOK, []() { return std::make_shared<Rook>(); }},
-            {PieceType::KNIGHT, []() { return std::make_shared<Knight>(); }},
-            {PieceType::BISHOP, []() { return std::make_shared<Bishop>(); }},
-            {PieceType::KING, []() { return std::make_shared<King>(); }},
-            {PieceType::QUEEN, []() { return std::make_shared<Queen>(); }},
-            {PieceType::PAWN, []() { return std::make_shared<Pawn>(); }}
-    };
+Game::Game()
+        : pieceConstructors{
+        {PieceType::ROOK, []() { return std::make_shared<Rook>(); }},
+        {PieceType::KNIGHT, []() { return std::make_shared<Knight>(); }},
+        {PieceType::BISHOP, []() { return std::make_shared<Bishop>(); }},
+        {PieceType::KING, []() { return std::make_shared<King>(); }},
+        {PieceType::QUEEN, []() { return std::make_shared<Queen>(); }},
+        {PieceType::PAWN, []() { return std::make_shared<Pawn>(); }}
+}
+{
+    std::cout << "Constructor Game\n";
 }
 
 Game::Game(const Game &other) :
