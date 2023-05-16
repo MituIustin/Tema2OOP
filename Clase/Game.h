@@ -36,6 +36,8 @@ private:
     Player first_player;
     Player second_player;
 
+    bool pawn_on_first_last_row(int, std::shared_ptr<Piece>);
+
     void create_white_squares();
     void move_pieces(std::vector<sf::Texture>&, std::vector<sf::Sprite>& );
 

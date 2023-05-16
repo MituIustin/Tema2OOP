@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <typeinfo>
 #include <unordered_map>
 
 Game::Game()
@@ -158,93 +159,117 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
     for (int i = 0; i < 8; i++) {
         create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackpawn.png",172,232,1,i,5);
     }
+
+}
+
+bool Game::pawn_on_first_last_row(int x, std::shared_ptr<Piece> piesa) {
+    std::shared_ptr<Pawn> pion = std::dynamic_pointer_cast<Pawn>(piesa);
+    if(pion && (x==0 || x==7)) return true;
+    return false;
 }
 
 void Game::start_game() {
 
-        std::vector<sf::Texture> textures;
-        std::vector<sf::Sprite> sprites;
-    try {
-
-        for (int i = 1; i <= 32; i++) {
+    std::vector<sf::Texture> textures;
+    std::vector<sf::Sprite> sprites;
+    try
+    {
+        for (int i = 1; i <= 32; i++)
+        {
             sf::Texture texture;
             sf::Sprite sprite;
             textures.push_back(texture);
             sprites.push_back(sprite);
         }
-
         move_pieces(textures, sprites);
     }
     catch (const Exception &e) {
         std::cout << "Error: " << e.what();
     }
 
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Chess ");
+    window.setVerticalSyncEnabled(true);
 
-        sf::RenderWindow window(sf::VideoMode(800, 800), "Chess ");
-        window.setVerticalSyncEnabled(true);
+    create_white_squares();
+    if (!window.isOpen()) throw WindowNotOpened();
+    int c1 = 0, c2 = 0, c3, c4;
 
-        create_white_squares();
-
-        if (!window.isOpen()) throw WindowNotOpened();
-
-        int c1 = 0, c2 = 0, c3, c4;
-
-        while (window.isOpen()) {
-            sf::Event event;
-            while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed) {
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
                     window.close();
-                }
+            }
 
-                if (event.type == sf::Event::MouseButtonPressed) {
-                    if (event.mouseButton.button == sf::Mouse::Left) {
-                        if (c1 == 0 && c2 == 0) {
-                            c1 = event.mouseButton.x / 100;
-                            c2 = event.mouseButton.y / 100;
-                        } else {
-                            c3 = c1;
-                            c4 = c2;
-                            c1 = event.mouseButton.x / 100;
-                            c2 = event.mouseButton.y / 100;
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    if (c1 == 0 && c2 == 0)
+                    {
+                        c1 = event.mouseButton.x / 100;
+                        c2 = event.mouseButton.y / 100;
+                    }
+                    else
+                    {
+                        c3 = c1;
+                        c4 = c2;
+                        c1 = event.mouseButton.x / 100;
+                        c2 = event.mouseButton.y / 100;
+                        try
+                        {
+                            if(pieces.size()==0) throw NoPieces();
+                            else
+                            {
+                                bool ok = false;
+                                for (long unsigned int i = 0; i < pieces.size(); i++)
+                                {
+                                    if (pieces[i]->move(c4, c3, c2, c1) && pieces[i]->get_row() == c3 && pieces[i]->get_col() == c4)
+                                    {
+                                        is_emp(c2, c1);
+                                        pieces[i]->set_row_col(c2, c1);
+                                        finish(c1, c2, c3, c4);
+                                        ok = true;
 
-                            try {
-
-                                if(pieces.size()==0) throw NoPieces();
-                                else {
-                                    bool ok = false;
-                                    for (long unsigned int i = 0; i < pieces.size(); i++) {
-                                        if (pieces[i]->move(c4, c3, c2, c1) && pieces[i]->get_row() == c3 && pieces[i]->get_col() == c4)
+                                        if(pawn_on_first_last_row(c2,pieces[i]))
                                         {
-                                            is_emp(c2, c1);
-                                            pieces[i]->set_row_col(c2, c1);
-                                            finish(c1, c2, c3, c4);
-                                            ok = true;
+                                            pieces[i] = std::make_shared<Queen>();
+                                            pieces[i] = std::dynamic_pointer_cast<Queen>(pieces[i]);
+                                            if(c2==0) pieces[i]->set_sprite(pieces[2]->get_sprite());
+                                            if(c2==7) pieces[i]->set_sprite(pieces[3]->get_sprite());
+                                            pieces[i]->set_row_col(c2,c1);
                                         }
+
                                     }
-                                    if(ok == false) throw NotValidMove();
-
                                 }
-                            }
-                            catch (const Exception &e) {
-                                std::cout << "Error: " << e.what();
-                            }
-                            c1 = 0;
-                            c2 = 0;
+                                if(ok == false) throw NotValidMove();
 
+                            }
                         }
+                        catch (const Exception &e)
+                        {
+                            std::cout << "Error: " << e.what();
+                        }
+                        c1 = 0;
+                        c2 = 0;
+
                     }
                 }
-
-                window.clear(sf::Color::Black);
-
-                for (auto square: white_squares) window.draw(square);
-
-                for (long unsigned int i = 0; i < pieces.size(); i++) {
-                    if (pieces[i]->get_alive()) window.draw(pieces[i]->get_sprite());
-                }
-
-                window.display();
             }
+
+            window.clear(sf::Color::Black);
+
+            for (auto square: white_squares) window.draw(square);
+            for (long unsigned int i = 0; i < pieces.size(); i++)
+            {
+                if (pieces[i]->get_alive()) window.draw(pieces[i]->get_sprite());
+            }
+
+            window.display();
         }
+    }
 
 }
