@@ -22,11 +22,6 @@ bool Queen::move(int x1, int y1, int x2, int y2) {
     return  var;
 }
 
-Queen& Queen::operator=(const Queen& other) {
-    // Apelează operatorul de atribuire al clasei de bază Piece
-    Piece::operator=(other);
-    return *this;
-}
 Queen::~Queen() {
     std::cout<<"Destructor Queen\n";
 }
