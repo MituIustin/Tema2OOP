@@ -42,7 +42,7 @@ private:
     void move_pieces(std::vector<sf::Texture>&, std::vector<sf::Sprite>& );
 
     void is_emp(int,int);
-    void create_piece(sf::Texture &, sf::Sprite &,std::string,int,int,int,int,int);
+    void create_piece(sf::Texture &, sf::Sprite &,std::string,int,int,int,int,int,std::string);
 
     static void finish(int, int ,int ,int );
 
@@ -52,6 +52,7 @@ public:
     Game(const Game &other);
     Game & operator=(const Game&);
     void start_game();
+    bool empty_square(int,int);
 };
 
 

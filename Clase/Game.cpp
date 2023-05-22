@@ -6,6 +6,16 @@
 #include <typeinfo>
 #include <unordered_map>
 
+bool Game::empty_square(int x, int y) {
+    for(long long unsigned int i=0; i<pieces.size(); i++)
+    {
+        if(pieces[i]->get_row()==y && pieces[i]->get_col()==x) return true;
+    }
+    return false;
+}
+
+
+
 Game::Game()
         : pieceConstructors{
         {PieceType::ROOK, []() { return std::make_shared<Rook>(); }},
@@ -70,7 +80,7 @@ void Game::create_white_squares() {
         }
 }
 
-void Game::create_piece(sf::Texture& texture, sf::Sprite& sprite, std::string texture_name, int x_final, int y_final, int x, int y, int n_piece) {
+void Game::create_piece(sf::Texture& texture, sf::Sprite& sprite, std::string texture_name, int x_final, int y_final, int x, int y, int n_piece, std::string color) {
     if (!texture.loadFromFile(texture_name, sf::IntRect(0, 0, x_final, y_final)))
         throw NoTexture();
 
@@ -83,6 +93,7 @@ void Game::create_piece(sf::Texture& texture, sf::Sprite& sprite, std::string te
     pieces.emplace_back((it->second)());
     pieces.back()->set_row_col(x, y);
     pieces.back()->set_sprite(sprite);
+    pieces.back()->set_color(color);
 }
 
 
@@ -112,21 +123,23 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
     std::vector<int> poz_x;
     std::vector<int> poz_y;
     std::vector<std::string> tex;
+    std::vector<std::string> col;
 
-    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whiteking.png",188,309,7,4,3);
-    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackking.png",196,306,0,4,3);
-    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whitequeen.png",184,286,7,3,4);
-    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackqueen.png",182,276,0,3,4);
+    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whiteking.png",188,309,7,4,3,"white");
+    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackking.png",196,306,0,4,3,"black");
+    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whitequeen.png",184,286,7,3,4,"white");
+    create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackqueen.png",182,276,0,3,4,"black");
 
     poz_x.push_back(7); poz_x.push_back(7); poz_x.push_back(0); poz_x.push_back(0);
     poz_y.push_back(2); poz_y.push_back(5); poz_y.push_back(2); poz_y.push_back(5);
+    col.push_back("white"); col.push_back("white"); col.push_back("black"); col.push_back("black");
 
     tex.push_back("Texturi/whitebishop.png"); tex.push_back("Texturi/whitebishop.png");
     tex.push_back("Texturi/blackbishop.png"); tex.push_back("Texturi/blackbishop.png");
 
     for(int i=0; i<4; i++)
     {
-        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],170,275,poz_x[i],poz_y[i],2);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],170,275,poz_x[i],poz_y[i],2,col[i]);
     }
 
     poz_y.clear();
@@ -138,7 +151,7 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
 
     for(int i=0; i<4; i++)
     {
-        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],185,285,poz_x[i],poz_y[i],1);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],185,285,poz_x[i],poz_y[i],1,col[i]);
     }
 
     poz_y.clear();
@@ -150,14 +163,14 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
 
     for(int i=0; i<4; i++)
     {
-        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],172,260,poz_x[i],poz_y[i],0);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],tex[i],172,260,poz_x[i],poz_y[i],0,col[i]);
     }
 
     for (int i = 0; i < 8; i++) {
-        create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whitepawn.png",171,242,6,i,5);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/whitepawn.png",171,242,6,i,5,"white");
     }
     for (int i = 0; i < 8; i++) {
-        create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackpawn.png",172,232,1,i,5);
+        create_piece(textures[pieces.size()],sprites[pieces.size()],"Texturi/blackpawn.png",172,232,1,i,5,"black");
     }
 
 }
@@ -227,7 +240,7 @@ void Game::start_game() {
                                 bool ok = false;
                                 for (long unsigned int i = 0; i < pieces.size(); i++)
                                 {
-                                    if (pieces[i]->move(c4, c3, c2, c1) && pieces[i]->get_row() == c3 && pieces[i]->get_col() == c4)
+                                    if (pieces[i]->move(c4, c3, c2, c1, empty_square(c2,c1)) && pieces[i]->get_row() == c3 && pieces[i]->get_col() == c4)
                                     {
                                         is_emp(c2, c1);
                                         pieces[i]->set_row_col(c2, c1);

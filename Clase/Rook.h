@@ -9,7 +9,7 @@ class Rook : public Piece{
 public:
     Rook();
     std::shared_ptr<Piece> clone() const override;
-    bool move(int,int,int,int) override;
+    bool move(int,int,int,int,bool) override;
     ~Rook();
 };
 

@@ -13,7 +13,7 @@ std::shared_ptr<Piece> Knight::clone() const {
     return std::make_shared<Knight>(Knight(*this));
 }
 
-bool Knight::move(int x1, int y1, int x2, int y2) {
+bool Knight::move(int x1, int y1, int x2, int y2,bool ok) {
     if (x1==x2 && y1==y2) return false;
     if(x1 == x2 - 2 && y1 == y2 - 1) return true;
     if(x1 == x2 - 2 && y1 == y2 + 1) return true;
