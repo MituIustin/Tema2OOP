@@ -1,5 +1,4 @@
 #include "Rook.h"
-#include "Exception.h"
 #include <iostream>
 #include <memory>
 

@@ -78,4 +78,17 @@ Piece::~Piece() {
     std::cout<<"Destructor Piece\n";
     number_of_pieces--;
 }
+
+
+std::string Piece::get_name() {
+    return name;
+}
+
+std::string Piece::get_color() {
+    return color;
+}
+
+void Piece::set_color(std::string color_) {
+    color = color_;
+}
 //CLASA ABSTRACTA

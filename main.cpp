@@ -11,7 +11,7 @@ int main() {
     #endif
 
     Game game;
-    game.start_game();
+    game.start_game(game);
 
     return 0;
 }

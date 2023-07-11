@@ -4,6 +4,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
+#include <random>
 
 Game::Game()
         : pieceConstructors{
@@ -89,13 +90,14 @@ std::vector<std::shared_ptr<Piece>> & Game::get_pieces() {
     return pieces;
 }
 
-void Game::is_emp(int y, int x) {
+void Game::is_emp(int y, int x, std::string color) {
 
     if ( y<0 || y>7 || x<0 || x>7) throw NotValidPosition();
     for(long unsigned int i = 0; i<pieces.size(); i++)
     {
         if(pieces[i]->get_row() == x && pieces[i]->get_col() == y)
         {
+            if(pieces[i]->get_color()==color) throw NotValidMove();
             get_pieces()[i]->set_row_col(9,9);
             get_pieces()[i]->set_alive(false);
         }
@@ -160,8 +162,9 @@ void Game::move_pieces(std::vector<sf::Texture>& textures, std::vector<sf::Sprit
     }
 }
 
-void Game::start_game() {
+void Game::start_game(Game & game) {
 
+        self_ref = game;
         std::vector<sf::Texture> textures;
         std::vector<sf::Sprite> sprites;
     try {
@@ -174,6 +177,34 @@ void Game::start_game() {
         }
 
         move_pieces(textures, sprites);
+
+        std::vector<std::string> colors;
+        colors.push_back("white");
+        colors.push_back("black");
+        colors.push_back("white");
+        colors.push_back("black");
+        for(int i=0; i<3; i++)
+        {
+            colors.push_back("white");
+            colors.push_back("white");
+            colors.push_back("black");
+            colors.push_back("black");
+        }
+        for(int i=0; i<8; i++)
+        {
+            colors.push_back("white");
+        }
+        for(int i=0; i<8; i++)
+        {
+            colors.push_back("black");
+        }
+
+        for(int i=0; i<pieces.size(); i++)
+        {
+            pieces[i]->set_color(colors[i]);
+        }
+        white_s_turn = true;
+
     }
     catch (const Exception &e) {
         std::cout << "Error: " << e.what();
@@ -213,12 +244,16 @@ void Game::start_game() {
                                 else {
                                     bool ok = false;
                                     for (long unsigned int i = 0; i < pieces.size(); i++) {
-                                        if (pieces[i]->move(c4, c3, c2, c1) && pieces[i]->get_row() == c3 && pieces[i]->get_col() == c4)
+                                        if (    ((white_s_turn == true && pieces[i]->get_color()=="white") || (white_s_turn == false && pieces[i]->get_color()=="black")) &&
+                                                pieces[i]->get_row() == c3 && pieces[i]->get_col() == c4 && pieces[i]->move(c4, c3, c2, c1)
+                                                 && (pieces[i]->get_name()=="knight" || empty_path(c4,c3,c2,c1) == true ))
                                         {
-                                            is_emp(c2, c1);
+                                            is_emp(c2, c1, pieces[i]->get_color());
                                             pieces[i]->set_row_col(c2, c1);
                                             finish(c1, c2, c3, c4);
                                             ok = true;
+                                            if(white_s_turn == false) white_s_turn = true;
+                                            else white_s_turn = false;
                                         }
                                     }
                                     if(ok == false) throw NotValidMove();
@@ -248,3 +283,78 @@ void Game::start_game() {
         }
 
 }
+
+std::shared_ptr<Piece> Game::piece_exists(int x, int y) {
+    for(int i=0; i<pieces.size(); i++)
+    {
+        if(pieces[i]->get_col() == x and pieces[i]->get_row() == y) return pieces[i];
+    }
+    return nullptr;
+}
+
+bool Game::empty_path(int x1, int y1, int x2, int y2) {
+    if(y1==y2)
+    {
+        for(int i=std::min(x1,x2)+1; i<std::max(x1,x2); i++)
+        {
+              if(piece_exists(i,y1) != nullptr) return false;
+        }
+    } else
+    {
+        if(x1==x2)
+        {
+            for(int i=std::min(y1,y2)+1; i<std::max(y1,y2); i++)
+            {
+                if(piece_exists(x1,i) != nullptr) return false;
+            }
+        }
+        else {
+            if (y1 < y2 && x1 < x2) {
+                while (y1 != y2) {
+                    y1++;
+                    x1++;
+                    if (piece_exists(x1, y1) != nullptr) return false;
+                    if (y1 + 1 == y2) break;
+                }
+            }
+
+            if (y1 < y2 && x1 > x2) {
+                while (y1 != y2) {
+                    y1++;
+                    x1--;
+                    if (piece_exists(x1, y1) != nullptr) return false;
+                    if (y1 + 1 == y2) break;
+                }
+            }
+            if (y1 > y2 && x1 < x2) {
+                while (y1 != y2) {
+                    y1--;
+                    x1++;
+                    if (piece_exists(x1, y1) != nullptr) return false;
+                    if (y1 - 1 == y2) break;
+                }
+            }
+            if (y1 > y2 && x1 > x2) {
+                while (y1 != y2) {
+                    y1--;
+                    x1--;
+                    if (piece_exists(x1, y1) != nullptr) return false;
+                    if (y1 - 1 == y2) break;
+                }
+            }
+
+        }
+    }
+    return true;
+}
+
+Game &Game::get_self_ref() {
+    return self_ref;
+}
+
+Game &Game::generateRandomValue() {
+    Game game;
+    rand = game;
+}
+
+Game& Game::self_ref =generateRandomValue();

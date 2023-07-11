@@ -1,7 +1,5 @@
 #include "King.h"
-#include "Exception.h"
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <cmath>
 King::King() {
     std::cout<<"Constructor King\n";
