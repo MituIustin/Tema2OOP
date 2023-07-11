@@ -14,7 +14,7 @@ std::shared_ptr<Piece> Rook::clone() const {
 }
 
 
-bool Rook::move(int x1, int y1, int x2, int y2) {
+bool Rook::move(int x1, int y1, int x2, int y2, bool ok) {
     if (x1==x2 && y1==y2) return false;
     bool var = true;
     if(x1 != x2 && y1 != y2) var = false;

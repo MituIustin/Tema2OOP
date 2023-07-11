@@ -36,8 +36,8 @@ Piece &Piece::operator=(const Piece & other) {
 }
 
 
-bool Piece::move(int x1,int x2,int x3,int x4) {
-    if(x1 == 0 && x2 == 0 && x3 == 0 && x4 == 0) return true;
+bool Piece::move(int x1,int x2,int x3,int x4, bool ok) {
+    if(x1 == 0 && x2 == 0 && x3 == 0 && x4 == 0 && ok == true) return true;
     return false;
 }
 
@@ -71,6 +71,14 @@ void Piece::set_row_col(int x, int y) {
     row = y;
     if(x >=0 && x<=9 && y>=0 && y<=9) sprite.setPosition(row*100, col*100);
     else throw NotValidXY();
+}
+
+std::string Piece::get_color() {
+    return color;
+}
+
+void Piece::set_color(std::string clr) {
+    color = clr;
 }
 
 

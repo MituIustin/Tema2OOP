@@ -36,29 +36,20 @@ private:
     Player first_player;
     Player second_player;
 
-    bool white_s_turn;
-
     void create_white_squares();
     void move_pieces(std::vector<sf::Texture>&, std::vector<sf::Sprite>& );
 
-    void is_emp(int,int,std::string);
+    void is_emp(int,int);
     void create_piece(sf::Texture &, sf::Sprite &,std::string,int,int,int,int,int);
 
     static void finish(int, int ,int ,int );
-
-    Game & rand;
-    static Game & self_ref ;
-    Game& generateRandomValue();
 
 public:
     Game();
     std::vector<std::shared_ptr<Piece>> & get_pieces();
     Game(const Game &other);
     Game & operator=(const Game&);
-    void start_game(Game & );
-    std::shared_ptr<Piece> piece_exists(int,int);
-    bool empty_path(int,int,int,int);
-    static Game & get_self_ref();
+    void start_game();
 };
 
 

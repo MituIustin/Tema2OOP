@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cmath>
 #include <memory>
-#include "Game.h"
 
 Pawn::Pawn(){
     std::cout<<"Constructor Pawn\n";
@@ -18,17 +17,6 @@ std::shared_ptr<Piece> Pawn::clone() const {
 bool Pawn::move(int x1, int x2, int y1, int y2) {
     if (x1==y1 && x2==y2) return false;
     if(x2==y2 && abs(x1-y1)<=2) return true;
-    std::swap(x2,y1);
-    if (color == "white")
-    {
-        if((y1==y2-1 || y1==y2+1) && x1==x2+1 && Game::get_self_ref().piece_exists(x2,y2)!=nullptr) return true;
-    }
-    else
-    {
-        if((y1==y2-1 || y1==y2+1) && x1==x2-1 && Game::get_self_ref().piece_exists(x2,y2)!=nullptr) return true;
-    }
-
-
     return false;
 }
 
