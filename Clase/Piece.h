@@ -24,15 +24,12 @@ public:
     bool get_alive();
     void set_alive(bool);
     void set_sprite(sf::Sprite);
-    void set_color(std::string);
     sf::Sprite get_sprite();
     Piece(const Piece&);
     Piece & operator=(const Piece&);
     std::string get_name();
-    std::string get_color();
 
 protected:
-    std::string color;
     bool alive;
     std::string color;
     std::string name;
