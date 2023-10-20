@@ -4,11 +4,10 @@
 #include <X11/Xlib.h>
 #endif
 
-
 int main() {
-    #ifdef __linux__
+#ifdef __linux__
     XInitThreads();
-    #endif
+#endif
 
     Game game;
     game.start_game();
@@ -16,4 +15,3 @@ int main() {
     return 0;
 }
 
-// ??????????????
