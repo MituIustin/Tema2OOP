@@ -7,15 +7,13 @@
 #include <string>
 
 class Piece {
-private:
-    int row,col;
+    private: int row, col;
     static int number_of_pieces;
 
-public:
-    Piece();
-    virtual std::shared_ptr<Piece> clone() const = 0;
-    virtual ~Piece();
-    virtual bool move(int,int,int,int,bool) =0;
+    public: Piece();
+    virtual std::shared_ptr < Piece > clone() const = 0;
+    virtual~Piece();
+    virtual bool move(int, int, int, int, bool) = 0;
     void set_row_col(int, int);
     int get_row();
     int get_col();
@@ -25,18 +23,16 @@ public:
     void set_alive(bool);
     void set_sprite(sf::Sprite);
     sf::Sprite get_sprite();
-    Piece(const Piece&);
-    Piece & operator=(const Piece&);
+    Piece(const Piece & );
+    Piece & operator = (const Piece & );
     std::string get_name();
 
-protected:
-    bool alive;
+    protected: bool alive;
     std::string color;
     std::string name;
     sf::Texture texture;
     sf::Sprite sprite;
 };
-
 
 #endif //OOP_PIECE_H
 
