@@ -34,7 +34,7 @@ The project is carried out as part of the Object Oriented Programming course. It
 
 ![imagine1](https://raw.githubusercontent.com/MituIustin/Tema2OOP/sfml/readmephotos/Capture1.PNG)
 
-2) Pick your arhitecture (it supports Linux and Windows):
+2) Pick your arhitecture (it supports Linux, Windows and MAC):
 
 ![imagine2](https://raw.githubusercontent.com/MituIustin/Tema2OOP/sfml/readmephotos/Capture2.PNG)
 
