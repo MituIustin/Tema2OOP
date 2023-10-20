@@ -2,16 +2,15 @@
 #define OOP_PAWN_H
 
 #include "Piece.h"
+
 #include <string>
 #include <memory>
 
-class Pawn : public Piece {
-public:
-    Pawn();
-    std::shared_ptr<Piece> clone() const override;
-    bool move(int,int,int,int,bool) override;
+class Pawn: public Piece {
+    public: Pawn();
+    std::shared_ptr < Piece > clone() const override;
+    bool move(int, int, int, int, bool) override;
     ~Pawn();
 };
-
 
 #endif //OOP_PAWN_H
