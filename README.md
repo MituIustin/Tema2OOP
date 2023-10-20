@@ -1,4 +1,4 @@
-#Chess
+# Chess
 
 
 ### 🚧 Working in progress... 🚧
@@ -7,9 +7,9 @@
 
 The project is carried out as part of the Object Oriented Programming course. It is made with the aim of familiarizing myself with the basic concepts of this programming paradigm. I tried to make a clone of the chess game.
 
-![imagine1](https://i.pinimg.com/474x/fe/ae/38/feae388c1360655169fa425d1bc4fe62.jpg)
+![imagine7]([https://i.pinimg.com/474x/fe/ae/38/feae388c1360655169fa425d1bc4fe62.jpg](https://github.com/MituIustin/Tema2OOP/blob/sfml/readmephotos/Capture7.PNG))
 
-##Containing:
+## Containing:
 
 - Separation of .h and .cpp files ✔
 - Inheritances ✔
@@ -31,21 +31,28 @@ The project is carried out as part of the Object Oriented Programming course. It
 ## How to install:
 
 1) Download from tags:
-  
+
+![imagine1]([https://i.pinimg.com/474x/fe/ae/38/feae388c1360655169fa425d1bc4fe62.jpg](https://github.com/MituIustin/Tema2OOP/blob/sfml/readmephotos/Capture1.PNG))
 
 2) Pick your arhitecture (it supports Linux and Windows):
 
+![imagine2]([https://i.pinimg.com/474x/fe/ae/38/feae388c1360655169fa425d1bc4fe62.jpg](https://github.com/MituIustin/Tema2OOP/blob/sfml/readmephotos/Capture2.PNG))
 
 3) Mark it as safe:
 
+![imagine3]([https://i.pinimg.com/474x/fe/ae/38/feae388c1360655169fa425d1bc4fe62.jpg](https://github.com/MituIustin/Tema2OOP/blob/sfml/readmephotos/Capture3.PNG))
 
 4) Unzip the file:
 
+![imagine4]([https://i.pinimg.com/474x/fe/ae/38/feae388c1360655169fa425d1bc4fe62.jpg](https://github.com/MituIustin/Tema2OOP/blob/sfml/readmephotos/Capture4.PNG))
 
 5) Doubleclick on .exe file:
 
+![imagine5]([https://i.pinimg.com/474x/fe/ae/38/feae388c1360655169fa425d1bc4fe62.jpg](https://github.com/MituIustin/Tema2OOP/blob/sfml/readmephotos/Capture5.PNG))
 
 6) Done!
+   
+![imagine6]([https://i.pinimg.com/474x/fe/ae/38/feae388c1360655169fa425d1bc4fe62.jpg](https://github.com/MituIustin/Tema2OOP/blob/sfml/readmephotos/Capture6.PNG))
 
 ## How to play:
 
