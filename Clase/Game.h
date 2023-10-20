@@ -28,29 +28,27 @@ enum class PieceType {
 };
 
 class Game {
-private:
-    std::unordered_map<PieceType, std::function<std::shared_ptr<Piece>()>> pieceConstructors;
-    std::vector<std::shared_ptr<Piece>> pieces;
-    std::vector <sf::Sprite> white_squares;
+    private: std::unordered_map < PieceType,
+    std:: function < std::shared_ptr < Piece > () >> pieceConstructors;
+    std::vector < std::shared_ptr < Piece >> pieces;
+    std::vector < sf::Sprite > white_squares;
     Board board;
     Player first_player;
     Player second_player;
 
     void create_white_squares();
-    void move_pieces(std::vector<sf::Texture>&, std::vector<sf::Sprite>& );
+    void move_pieces(std::vector < sf::Texture > & , std::vector < sf::Sprite > & );
 
-    void is_emp(int,int);
-    void create_piece(sf::Texture &, sf::Sprite &,std::string,int,int,int,int,int);
+    void is_emp(int, int);
+    void create_piece(sf::Texture & , sf::Sprite & , std::string, int, int, int, int, int);
 
-    static void finish(int, int ,int ,int );
+    static void finish(int, int, int, int);
 
-public:
-    Game();
-    std::vector<std::shared_ptr<Piece>> & get_pieces();
-    Game(const Game &other);
-    Game & operator=(const Game&);
+    public: Game();
+    std::vector < std::shared_ptr < Piece >> & get_pieces();
+    Game(const Game & other);
+    Game & operator = (const Game & );
     void start_game();
 };
-
 
 #endif //OOP_GAME_H
